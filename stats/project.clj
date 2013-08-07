@@ -15,9 +15,22 @@ The statistic display should include:
 "
 
   :url "https://handyem.atlassian.net/wiki/display/SS/Statistics+view"
+
+  :source-paths ["src/clj"]
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [compojure "1.1.5"]]
-  :plugins [[lein-ring "0.8.5"]]
+  :plugins [[lein-ring "0.8.5"]
+            [lein-cljsbuild "0.3.2"]]
+
   :ring {:handler stats.handler/app}
+
+  :cljsbuild {:builds
+              [{;; CLJS source code path
+                :source-paths ["src/cljs"]
+
+                :compiler {;; Google Clojure (CLS) configuration:
+                           :output-to "resources/public/js/stats.js"
+                           :optimizations :whitespace
+                           :pretty-print true}}]}
   :profiles
   {:dev {:dependencies [[ring-mock "0.1.5"]]}})
