@@ -96,8 +96,8 @@ In a browser window we see that the value of the mean values is changed.
 ## Next step
 So far, so good - we are able to change the page.
 
-In a next step we will do some process improvements:
+In a next step we will do some housekeeping:
 
+- More convenient REPL
 - We will add to our code documentation
 - Statical code analysis
-- More convenient REPL
