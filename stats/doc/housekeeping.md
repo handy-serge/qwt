@@ -228,3 +228,10 @@ More elaborate configuration is in `profiles.clj`:
 
 [5]: https://github.com/technomancy/leiningen/blob/master/sample.project.clj "
 Sample leiningen project. (Look for `:aliases`)."
+
+## Next steps
+In a next part we will make the statistics table look as it should:
+
+- CSS styling of the tables
+- HTML code to include most of needed information
+- Selectors to have statistic table cell addressable from the code
