@@ -1,0 +1,18 @@
+/* CSS styles for use when styling statistics tables */
+table.statistics {
+    border-collapse: collapse;
+    text-align: right;
+}
+
+.statistics tr.plot-header {
+    background-color:#EAD8D8;
+    color: #CC0000;
+}
+
+.statistics col {
+    width: 6em;
+}
+
+.statistics th {
+    vertical-align: top;
+}

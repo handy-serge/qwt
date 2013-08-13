@@ -1,33 +1,160 @@
 <!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8">
     <title>Statistics view page</title>
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-</head>
-<body>
-    <!-- pointing to cljsbuild generated js file -->
-    <script src="js/stats.js"></script>
+
+       <!-- CSS from Blacksmartie. -->
+       <link rel="stylesheet" href="css/handyem.css">
+
+       <!-- Custom CSS for statistics display -->
+       <link rel="stylesheet" href="css/stats.css">
+
+       <!-- pointing to cljsbuild generated js file -->
+       <script src="js/stats.js"></script>
+
+  </head>
+  <body>
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
 
     <h1>Statistics display</h1>
     <p>This page displays statistical information. </p>
 
     <!-- Statics table -->
-    <table border="1">
+    <table class="statistics">
+      <colgroup>
+        <col></col>
+        <col></col>
+        <col></col>
+        <col></col>
+        <col></col>
+        <col></col>
+      </colgroup>
       <tr>
-        <th>Gate</th>
-        <th>Mean</th>
+        <th></th>
+        <th>Type</th>
+        <th>Mean</br>(X)</th>
+        <th>Mean</br>(Y)</th>
+        <th>Med</br>(X)</th>
+        <th>Med</br>(Y)</th>
       </tr>
+      <!-- Plot 1 -->
+      <!-- Plot 1: Header -->
+      <tr class="plot-header">
+        <th>Plot 1</th>
+        <td>S</td>
+        <td>FSC</td>
+        <td>SSC</td>
+        <td>FSC</td>
+        <td>SSC</td>
+      </tr>
+      <!-- Plot 1: Stats -->
       <tr>
-        <td>Gate 1</td>
-        <td id="mean-for-gate-1">111.1</td>
+        <th>Plot 1</th>
+        <td>S</td>
+        <td>111.1</td>
+        <td>222.2</td>
+        <td>333.3</td>
+        <td>444.4</td>
       </tr>
+      <!-- Plot 1: Gate 1 -->
       <tr>
-        <td>Gate 2</td>
-        <td id="mean-for-gate-2">222.2</td>
+        <th>G1</th>
+        <td>R</td>
+        <td>11.1</td>
+        <td>22.2</td>
+        <td>33.3</td>
+        <td>44.4</td>
       </tr>
-</table>
-</body>
+
+      <!-- Plot 2 -->
+      <!-- Plot 2: Header -->
+      <tr class="plot-header">
+        <th>Plot 2</th>
+        <td>H</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <!-- Plot 2: Stats -->
+      <tr>
+        <th>Plot 2</th>
+        <td>H</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <!-- Plot 2: Gate 2 -->
+      <tr>
+        <th>G2</th>
+        <td>M</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <!-- Plot 3 -->
+      <!-- Plot 3: Header -->
+      <tr class="plot-header">
+        <th>Plot 3</th>
+        <td>S</td>
+        <td>FSC</td>
+        <td>SSC</td>
+        <td>FSC</td>
+        <td>SSC</td>
+      </tr>
+      <tr> <!-- Plot 3: Stats -->
+        <th>Plot 3</th>
+        <td>S</td>
+        <td>111.1</td>
+        <td>222.2</td>
+        <td>333.3</td>
+        <td>444.4</td>
+      </tr>
+      <!-- Plot 3: Gate 3 -->
+      <tr>
+        <th>G3</th>
+        <td>R</td>
+        <td>11.1</td>
+        <td>22.2</td>
+        <td>33.3</td>
+        <td>44.4</td>
+      </tr>
+
+      <!-- Plot 4 -->
+      <!-- Plot 4: Header -->
+      <tr class="plot-header">
+        <th>Plot 4</th>
+        <td>S</td>
+        <td>FSC</td>
+        <td>SSC</td>
+        <td>FSC</td>
+        <td>SSC</td>
+      </tr>
+      <tr> <!-- Plot 4: Stats -->
+        <th>Plot 4</th>
+        <td>S</td>
+        <td></td>
+        <td></td>
+        <td>333.3</td>
+        <td>444.4</td>
+      </tr>
+      <!-- Plot 4: Gate 4 -->
+      <tr>
+        <th>G4</th>
+        <td>R</td>
+        <td>11.1</td>
+        <td>22.2</td>
+        <td>33.3</td>
+        <td>44.4</td>
+      </tr>
+    </table>
+
+  </body>
 </html>
