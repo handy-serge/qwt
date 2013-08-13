@@ -1,0 +1,11 @@
+body
+{
+    font-family:century gothic,sans-serif;
+    -khtml-user-select: none;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+}
+
+.ui-widget-content { border:none; }
+
+.hidden { display:none; }
