@@ -1,4 +1,4 @@
-# Look and fill
+# Look and feel
 This document describes how to make statistics display look as described in requirements document.
 
 ## Change HTML to include all needed columns and lines
@@ -170,7 +170,7 @@ The next step would be update ClojureScript code to reflect changes in HTML.
 If we try to play with our code with browser REPL, we will find that browser
 REPL no longer works! This is quite sad. Let's fix it.
 
-After some bisecting, we find the reason why it is broken. Accidentally we moved infocation of the compiled ClojureScript in the `<head>` tag of the `<html>` instead of the `<body>` tag. For some strange reason, it breaks the connection!
+After some bisecting, we find the reason why it is broken. Accidentally we moved information of the compiled ClojureScript in the `<head>` tag of the `<html>` instead of the `<body>` tag. For some strange reason, it breaks the connection!
 
 So, we initiate the connection to the REPL so that it happens after the page is loaded.
 We connect to the REPL from `onload` event.
@@ -287,7 +287,7 @@ Disadvantage of this approach, is that if the structure of the HTML is
 changed, all XPath expressions need to be adjusted.
 
 
-In the third approach, each peace of the semantic information is
+In the third approach, each piece of the semantic information is
 attached where it is need, and then this information is used in
 selectors. For example:
 
@@ -310,7 +310,7 @@ approach:
   the semantic parts;
 - Second approach is less flexible if in a future the columns or rows
   are added, or table structure changes;
-- Third aproach seems to be more manageable, as it allows to annotante
+- Third aproach seems to be more manageable, as it allows to annotate
   some tags and then exploit the table structure. (For example, it is
   possible to annotate only table row, and then use this information
   for table cells within the row.)
