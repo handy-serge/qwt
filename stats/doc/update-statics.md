@@ -1,45 +1,21 @@
-(ns blacksmartie.client.stats
-  "Updates statistics table.
+# Update statistics displayed by the stats table
+In a previous steps we implemented the look and feel of the stats
+table and found the way to update information about the plot type.
+We integrated it in blacksmartie to check that it works. Now we
+implement the functions that allow us to update the rest of the data
+cells.
 
-  Statistics table displays the means and medians for the data displayed in gates and plots."
-  (:require [domina :as dom]
-            [domina.xpath :as xpath]
-            [domina.css :as css]))
+## Update gate type
+In the same way as the plot type, we make two functions:
+`select-gate-type` and `set-gate-type`:
 
-
-(defn select-plot-type
-  "Returns CSS selector that addresses the table cells that display plot type."
-  [plot-id]
-  (str "table.statistics"
-       (format " tr[data-plot-id=\"%s\"]" plot-id)
-       " td[data-meaning=\"plot-type\"]"))
-
+```clojurescript
 (defn select-gate-type
   "Returns CSS selector that addresses the table cells that display gate type."
   [gate-id]
   (str "table.statistics"
        (format " tr[data-gate-id=\"%s\"]" gate-id)
        " td[data-meaning=\"gate-type\"]"))
-
-(defn set-plot-type!
-  "Updates the cell that displays the plot type for the given plot.
-
-   Parameters:
-
-   - plot-id: ([1..4], int) What plot type to update
-   - plot-type: (string) what to display as a plot type
-
-   Example of usage:
-
-       (set-plot-type! 1 'S')
-       ;;=> will display 'S' in the type cell for plot 1.
-   "
-  [plot-id plot-type]
-  (-> plot-id
-      (select-plot-type)
-      (css/sel)
-      (dom/set-text! plot-type)))
-
 
 (defn set-gate-type!
   "Updates the cell that displays the gate type for the given gate.
@@ -59,8 +35,26 @@
       (select-gate-type)
       (css/sel)
       (dom/set-text! gate-type)))
+```
 
 
+Obviously, to make it work I need to annotate HTML:
+
+```html
+      <!-- Plot 1: Gate 1 -->
+      <tr data-gate-id="1">
+        <th>G1</th>
+        <td data-meaning="gate-type">R</td>
+        <td>11.1</td>
+        <td>22.2</td>
+        <td>33.3</td>
+        <td>44.4</td>
+      </tr>
+```
+
+I update the test function to run in a REPL:
+
+```clojurescript
 (defn test
   "Executes some functions in this file.
 
@@ -82,3 +76,6 @@
 
     ;; Test ended...
     ))
+```
+
+So, now we see `PT-` and `GT-` in all plots and gate type cells.
