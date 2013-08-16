@@ -74,8 +74,6 @@
     ;; Sets all gate types to "gt-K", where K is gate id.
     (doseq [data-source data-source-types
             id ids]
-      (print data-source id
-             (label-data-source data-source id))
       (set-value! (data-source-type data-source id)
                     (label-data-source data-source id)))
 
