@@ -3,7 +3,6 @@
 
   Statistics table displays the means and medians for the data displayed in gates and plots."
   (:require [domina :as dom]
-            [domina.xpath :as xpath]
             [domina.css :as css]))
 
 (defn data-source-type
@@ -45,9 +44,9 @@
 (defn set-value!
   "Sets the values for the given statistic table region."
   [selector value]
-  (-> selector
-      (css/sel)
-      (dom/set-text! value)))
+  (dom/set-text! (css/sel selector)
+                 value))
+
 
 (defn test
   "Executes some functions in this file.
