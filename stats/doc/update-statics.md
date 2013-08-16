@@ -314,3 +314,89 @@ that accesses them could be written like this:
        (format " td[data-axis=\"%s\"]"
                (name axis) )))
 ```
+
+## Display stats
+In the same way, we annotate HTML and define how to access the cells
+that display stats:
+
+```html
+       <tr data-gate-id="4">
+        <th>G4</th>
+        <td data-meaning="gate-type">R</td>
+        <td data-meaning="mean"
+            data-axis="x">11.1</td>
+        <td data-meaning="mean"
+            data-axis="y">22.2</td>
+        <td data-meaning="median"
+            data-axis="x">33.3</td>
+        <td data-meaning="median"
+            data-axis="y">44.4</td>
+      </tr>
+```
+
+```clojurescript
+(defn stat
+  "Addresses the cells that display particular statistic information"
+  [data-source-type id meaning axis]
+  (str "table.statistics"
+       (format " tr[data-%s-id=\"%s\"]"
+               (name data-source-type)
+               id)
+       (format " td[data-meaning=\"%s\"][data-axis=\"%s\"]"
+               (name meaning)
+               (name axis))))
+```
+
+Then we test it all together:
+
+```clojurescript
+(defn test
+  "Executes some functions in this file.
+
+  Call this function from REPL to see how code behaves.
+  "
+  []
+  (let  [data-source-types [:plot :gate]
+         prefixes {:plot "PT-" :gate "gt-"}
+         ids [1 2 3 4]
+         axes [:x :y]
+         meanings [:mean :median]
+         label-data-source (fn [ds id]
+                             (str (get prefixes ds "???" ) id))
+         label-channel (fn [plot-id axis]
+                         (str "CH-" plot-id "-" (name axis)))
+         label-stat (fn [ds id meaning axis]
+                      (str (get prefixes ds "???" )
+                           id
+                           ":" (name meaning)
+                           ":" (name axis)))]
+
+    ;; Sets all plot types to "PT-N", where N is plot id.
+    ;; Sets all gate types to "gt-K", where K is gate id.
+    (doseq [data-source data-source-types
+            id ids]
+      (print data-source id
+             (label-data-source data-source id))
+      (set-value! (data-source-type data-source id)
+                    (label-data-source data-source id)))
+
+    ;; Set all channel labels
+    (doseq [plot-id ids
+            axis axes]
+      (set-value! (channel-label plot-id axis)
+                  (label-channel plot-id axis)))
+
+    ;; Set all stats
+    (doseq [ds data-source-types
+            id ids
+            meaning meanings
+            axis axes]
+      (set-value! (stat ds id meaning axis)
+                  (label-stat ds id meaning axis)))
+      ;; Test ended...
+      ))
+```
+
+The result should fill all table in a browser. Now we are ready to
+integrate it into the blacksmartie.
+
