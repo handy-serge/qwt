@@ -21,6 +21,13 @@
        (format " tr[data-gate-id=\"%s\"]" gate-id)
        " td[data-meaning=\"gate-type\"]"))
 
+(defn set-value!
+  "Sets statistics value."
+  [selector value]
+  (-> selector
+      (css/sel)
+      (dom/set-text! value)))
+
 (defn set-plot-type!
   "Updates the cell that displays the plot type for the given plot.
 
@@ -35,10 +42,8 @@
        ;;=> will display 'S' in the type cell for plot 1.
    "
   [plot-id plot-type]
-  (-> plot-id
-      (select-plot-type)
-      (css/sel)
-      (dom/set-text! plot-type)))
+  (set-value! (select-plot-type plot-id)
+              plot-type))
 
 
 (defn set-gate-type!
@@ -55,10 +60,8 @@
        ;;=> will display 'S' in the type cell for gate 1.
    "
   [gate-id gate-type]
-  (-> gate-id
-      (select-gate-type)
-      (css/sel)
-      (dom/set-text! gate-type)))
+  (set-value! (select-gate-type gate-id)
+              gate-type))
 
 
 (defn test
@@ -72,13 +75,15 @@
          ids (range first-id
                     (inc last-id))]
 
-    ;; Sets all gate types to "PT-N", where N is plot id.
-    (for [plot-id ids]
-      (set-plot-type! plot-id (str "PT-" plot-id)))
+      ;; Sets all gate types to "GT-N", where N is gate id.
 
-    ;; Sets all gate types to "GT-N", where N is gate id.
-    (for [gate-id ids]
+    (doseq [gate-id ids]
       (set-gate-type! gate-id (str "GT-" gate-id)))
 
-    ;; Test ended...
-    ))
+      ;; Sets all gate types to "PT-N", where N is plot id.
+
+    (doseq [plot-id ids]
+      (set-plot-type! plot-id (str "PT-" plot-id)))
+
+      ;; Test ended...
+      ))
