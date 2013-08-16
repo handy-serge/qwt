@@ -87,7 +87,7 @@ I update the test function to run in a REPL:
 
 So, now we see `PT-` and `GT-` in all plots and gate type cells.
 
-### Removing duplication
+## Removing duplication
 Unfortunately, by blindly copypasting the functions, we introduced 2
 functions that are about the same except the type of selector.
 
@@ -184,18 +184,18 @@ This may sound a bit complicated, without concrete example. In our
 particular case it means, that we will have only 5 functions:
 
 - For semantic chunks:
-    - `type`, with attributions:
+    - `data-source-type`, with attributions:
         - `data-source-type`
         - `id`
+    - `channel-label` with attributions
+        - `data-source-type`
+        - `id`
+        - `axis`
     - `stat` with attributions:
         - `data-source-type`
         - `id`
         - `axis`
         - `meaning`
-    - `channel` with attributions
-        - `data-source-type`
-        - `id`
-        - `axis`
 
 - For operations:
     - `set-value!`
@@ -281,4 +281,36 @@ We also need to update our test:
                     (label data-source id)))
       ;; Test ended...
       ))
+```
+
+## Set labels for channels
+All what is needed is to annotate HTML:
+
+```html
+
+      <!-- Plot 4: Header -->
+      <tr class="plot-header"
+          data-plot-id="4">
+        <th>Plot 4</th>
+        <td data-meaning="plot-type">S</td>
+        <td data-axis="x">FSC</td>
+        <td data-axis="y">SSC</td>
+        <td data-axis="x">FSC</td>
+        <td data-axis="y">SSC</td>
+      </tr>
+
+```
+
+Channel labels are displayed only in a plot headers. So, the function
+that accesses them could be written like this:
+
+```clojurescript
+(defn channel-label
+  "Addresses the cells that display the channel label for the given axis"
+  [plot-id axis]
+  (str "table.statistics"
+       (format " tr.plot-header[data-plot-id=\"%s\"]"
+               plot-id)
+       (format " td[data-axis=\"%s\"]"
+               (name axis) )))
 ```

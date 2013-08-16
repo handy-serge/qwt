@@ -22,6 +22,15 @@
        (format " td[data-meaning=\"%s-type\"]"
                (name data-source-type))))
 
+(defn channel-label
+  "Addresses the cells that display the channel label for the given axis"
+  [plot-id axis]
+  (str "table.statistics"
+       (format " tr.plot-header[data-plot-id=\"%s\"]"
+               plot-id)
+       (format " td[data-axis=\"%s\"]"
+               (name axis) )))
+
 (defn set-value!
   "Sets the values for the given statistic table region."
   [selector value]
@@ -35,23 +44,30 @@
   Call this function from REPL to see how code behaves.
   "
   []
-  (let  [first-id 1
-         last-id 4
-         data-source-types [:plot :gate]
+  (let  [data-source-types [:plot :gate]
          prefixes {:plot "PT-" :gate "gt-"}
-         ids (range first-id
-                    (inc last-id))
-         label (fn [ds id]
-                 (str (get prefixes ds "???" )
-                      id))]
+         ids [1 2 3 4]
+         axes [:x :y]
+         label-data-source (fn [ds id]
+                             (str (get prefixes ds "???" ) id))
+         label-channel (fn [plot-id axis]
+                         (str "CH-" plot-id "-" (name axis)))
+         ]
+
 
     ;; Sets all plot types to "PT-N", where N is plot id.
     ;; Sets all gate types to "gt-K", where K is gate id.
     (doseq [data-source data-source-types
             id ids]
       (print data-source id
-             (label data-source id))
+             (label-data-source data-source id))
       (set-value! (data-source-type data-source id)
-                    (label data-source id)))
+                    (label-data-source data-source id)))
+
+    ;; Set all channel labels
+    (doseq [plot-id ids
+            axis axes]
+      (set-value! (channel-label plot-id axis)
+                  (label-channel plot-id axis)))
       ;; Test ended...
       ))
