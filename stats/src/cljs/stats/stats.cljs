@@ -2,8 +2,13 @@
   "Updates statistics table.
 
   Statistics table displays the means and medians for the data displayed in gates and plots."
+  (:require-macros [hiccups.core :as hiccups])
   (:require [domina :as dom]
-            [domina.css :as css]))
+            [domina.css :as css]
+            [hiccups.runtime :as hiccupsrt]
+            ))
+
+;;; ## Data access ##
 
 (defn data-source-type
   "Addresses the table cells that display the type of the data source.
@@ -41,12 +46,158 @@
                (name meaning)
                (name axis))))
 
+;; ## Operations ##
 (defn set-value!
   "Sets the values for the given statistic table region."
   [selector value]
   (dom/set-text! (css/sel selector)
                  value))
 
+;; ## HTML generation ##
+(defn plot-label
+  "Generates label for the plot."
+  [plot-id]
+  (format "Plot %s" plot-id))
+
+(defn gate-label
+  "Generates label for the gate."
+  [gate-id]
+  (format "G%s" gate-id))
+
+(defn plot-counts-plot-header-html
+  "Plot header line for every plot header in counts table."
+  [plot-id]
+  (hiccups/html [:tr.plot-header
+                 {:data-plot-id plot-id}
+                 [:th (plot-label plot-id)]
+                 [:td {:data-meaning :plot-type} "S"]
+                 [:td {:data-axis :x} "FSC"]
+                 [:td {:data-axis :y} "SCS"]
+
+                 ;; Last 4 columns are empty
+                 (for [i (range 0 4)]
+                   [:td])]))
+
+(defn plot-counts-plot-stats-html
+  [plot-id]
+  (hiccups/html [:tr {:data-plot-id plot-id}
+                 [:th (plot-label plot-id)]
+                 [:td {:data-meaning :plot-type} "S"]
+                 [:td {:data-meaning :cv
+                       :data-axis :x} 11.1]
+                 [:td {:data-meaning :cv
+                       :data-axis :y} 22.2]
+                 [:td {:data-meaning :count-absolute} 33.3]
+                 [:td {:data-meaning :count-percentage} 44.4]
+                 [:td {:data-meaning :concentraton} 44.4]
+                 [:td {:data-meaning :total-count} 55.5]
+                 ]))
+
+(defn plot-counts-gate-stats-html
+  [gate-id]
+  (hiccups/html [:tr {:data-plot-id gate-id}
+                 [:th (gate-label gate-id)]
+                 [:td {:data-meaning :gate-type} "S"]
+                 [:td {:data-meaning :cv
+                       :data-axis :x} 11.1]
+                 [:td {:data-meaning :cv
+                       :data-axis :y} 22.2]
+                 [:td {:data-meaning :count-absolute} 33.3]
+                 [:td {:data-meaning :count-percentage} 44.4]
+                 [:td {:data-meaning :concentraton} 55.5]
+                 [:td {:data-meaning :total-count} 66.6]
+                 ]))
+
+(defn plot-counts-html
+  "Generates HTML for 3 lines in a table that represents the counts of one plot:
+
+  - Plot header
+  - Plot counts
+  - Gate counts
+  "
+  [plot-id]
+  (str  (plot-counts-plot-header-html plot-id)
+        (plot-counts-plot-stats-html plot-id)
+        (plot-counts-gate-stats-html plot-id)))
+
+(defn counts-html
+  "Generates html for counts table"
+  []
+  (hiccups/html [:table {:id "counts-table"
+                         :class "statistics"}
+                 [:colgroup
+                  (for [i (range 0 8)]
+                    [:col])]
+
+                 [:tr ;; Table header
+                  [:th]
+                  [:th "Type"]
+                  [:th "CV (%)" [:br] "(X)"]
+                  [:th "CV (%)" [:br] "(Y)"]
+                  [:th "Count" [:br] "(#)"]
+                  [:th "Count" [:br] "(%)"]
+                  [:th "[C]" [:br] "(p/ul)"]
+                  [:th "Total #" [:br] "(10ml)"] ]
+                 (for [plot-id (range 1 5)]
+                   (plot-counts-html plot-id))
+                 ]))
+
+
+;;; ## Tests ###
+(def data-source-types [:plot :gate])
+(def ids [1 2 3 4])
+(def prefixes {:plot "PT-" :gate "gt-"})
+(def axes [:x :y])
+(def meanings [:mean :median])
+
+(defn test-data-source-label
+  "Verify that we label data sources properly.
+
+   Sets all plot types to 'PT-N', where N is plot id.
+   Sets all gate types to 'gt-K', where K is gate id."
+  []
+  (let [label-data-source (fn [ds id]
+                            (str (get prefixes ds "???" ) id))]
+    (doseq [data-source data-source-types
+            id ids]
+      (set-value! (data-source-type data-source id)
+                  (label-data-source data-source id)))))
+
+(defn test-channel-label
+  "Test that we label channels correctly"
+  []
+  (let [label-channel (fn [plot-id axis]
+                        (str "CH-" plot-id "-" (name axis)))]
+      (doseq [plot-id ids
+              axis axes]
+        (set-value! (channel-label plot-id axis)
+                    (label-channel plot-id axis)))))
+
+(defn test-stats
+  "Test that we can access all stats properly."
+  []
+  (let [label-stat (fn [ds line-id meaning axis]
+                     (str (get prefixes ds "???" )
+                          line-id
+                          ":" (name meaning)
+                          ":" (name axis)))]
+
+    ;; For some strange reason, I had a problem to run 4-level deep
+    ;; do-seq inside defn in browser repl. So I manually unroll the
+    ;; loop for axis to have the loop of only 3 levels deep.
+    (doseq [ds data-source-types
+            meaning meanings
+            id ids
+            ]
+      (set-value! (stat ds id meaning :x)
+                  (label-stat ds id meaning :x))
+      (set-value! (stat ds id meaning :y)
+                  (label-stat ds id meaning :y)))))
+
+(defn test-counts-html
+  "Test generation of the HTML for counts table"
+  []
+  (dom/swap-content! (dom/by-id "counts-table") (counts-html)))
 
 (defn test
   "Executes some functions in this file.
@@ -54,40 +205,13 @@
   Call this function from REPL to see how code behaves.
   "
   []
-  (let  [data-source-types [:plot :gate]
-         prefixes {:plot "PT-" :gate "gt-"}
-         ids [1 2 3 4]
-         axes [:x :y]
-         meanings [:mean :median]
-         label-data-source (fn [ds id]
-                             (str (get prefixes ds "???" ) id))
-         label-channel (fn [plot-id axis]
-                         (str "CH-" plot-id "-" (name axis)))
-         label-stat (fn [ds id meaning axis]
-                      (str (get prefixes ds "???" )
-                           id
-                           ":" (name meaning)
-                           ":" (name axis)))]
 
-    ;; Sets all plot types to "PT-N", where N is plot id.
-    ;; Sets all gate types to "gt-K", where K is gate id.
-    (doseq [data-source data-source-types
-            id ids]
-      (set-value! (data-source-type data-source id)
-                    (label-data-source data-source id)))
+  ;; Test stats:
+  (test-data-source-label)
+  (test-channel-label)
+  (test-stats)
 
-    ;; Set all channel labels
-    (doseq [plot-id ids
-            axis axes]
-      (set-value! (channel-label plot-id axis)
-                  (label-channel plot-id axis)))
-
-    ;; Set all stats
-    (doseq [ds data-source-types
-            id ids
-            meaning meanings
-            axis axes]
-      (set-value! (stat ds id meaning axis)
-                  (label-stat ds id meaning axis)))
-      ;; Test ended...
-      ))
+  ;; Test counts:
+  (test-counts-html)
+  ;; Test ended...
+  )
