@@ -64,7 +64,7 @@
   [gate-id]
   (format "G%s" gate-id))
 
-(defn plot-counts-plot-header-html
+(defn html-for-single-plot-counts-header-row
   "Plot header line for every plot header in counts table."
   [plot-id]
   (hiccups/html [:tr.plot-header
@@ -78,7 +78,7 @@
                  (for [i (range 0 4)]
                    [:td])]))
 
-(defn plot-counts-plot-stats-html
+(defn html-for-single-plot-counts-row
   [plot-id]
   (hiccups/html [:tr {:data-plot-id plot-id}
                  [:th (plot-label plot-id)]
@@ -93,11 +93,11 @@
                  [:td {:data-meaning :total-count} 55.5]
                  ]))
 
-(defn plot-counts-gate-stats-html
+(defn html-for-single-gate-counts-row
   [gate-id]
-  (hiccups/html [:tr {:data-plot-id gate-id}
+  (hiccups/html [:tr {:data-gate-id gate-id}
                  [:th (gate-label gate-id)]
-                 [:td {:data-meaning :gate-type} "S"]
+                 [:td {:data-meaning :gate-type} "K"]
                  [:td {:data-meaning :cv
                        :data-axis :x} 11.1]
                  [:td {:data-meaning :cv
@@ -108,7 +108,7 @@
                  [:td {:data-meaning :total-count} 66.6]
                  ]))
 
-(defn plot-counts-html
+(defn html-for-single-plot-counts
   "Generates HTML for 3 lines in a table that represents the counts of one plot:
 
   - Plot header
@@ -116,11 +116,11 @@
   - Gate counts
   "
   [plot-id]
-  (str  (plot-counts-plot-header-html plot-id)
-        (plot-counts-plot-stats-html plot-id)
-        (plot-counts-gate-stats-html plot-id)))
+  (str (html-for-single-plot-counts-header-row plot-id)
+       (html-for-single-plot-counts-row plot-id)
+       (html-for-single-gate-counts-row plot-id)))
 
-(defn counts-html
+(defn html-for-counts-table
   "Generates html for counts table"
   []
   (hiccups/html [:table {:id "counts-table"
@@ -139,8 +139,13 @@
                   [:th "[C]" [:br] "(p/ul)"]
                   [:th "Total #" [:br] "(10ml)"] ]
                  (for [plot-id (range 1 5)]
-                   (plot-counts-html plot-id))
+                   (html-for-single-plot-counts plot-id))
                  ]))
+
+(defn replace-html-for-counts-table!
+  []
+  (dom/swap-content! (dom/by-id "counts-table")
+                     (html-for-counts-table)))
 
 
 ;;; ### HTML for stats ###
@@ -275,10 +280,6 @@
       (set-value! (stat ds id meaning :y)
                   (label-stat ds id meaning :y)))))
 
-(defn test-counts-html
-  "Test generation of the HTML for counts table"
-  []
-  (dom/swap-content! (dom/by-id "counts-table") (counts-html)))
 
 (defn test
   "Executes some functions in this file.
@@ -289,7 +290,7 @@
 
   ;; Generate html for tables
   (replace-html-for-stats-table!)
-  (test-counts-html)
+  (replace-html-for-counts-table!)
 
   ;; Fill tables with test data
   ;; - stats table
