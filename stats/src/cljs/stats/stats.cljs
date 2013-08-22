@@ -143,7 +143,88 @@
                  ]))
 
 
-;;; ## Tests ###
+;;; ### HTML for stats ###
+(defn html-for-single-plot-stats
+  "Generates HTML for  3 lines in a table
+   that represent the statistics for one plot:
+
+   - Plot header
+   - Plot stats
+   - Gate stats
+
+  Parameters:
+
+  - plot-id Id of the plots - integers from 1 to 4.
+  "
+  [plot-id]
+  (let [plot-label (format "Plot %s" plot-id)
+        gate-label (format "G%s" plot-id)]
+    (hiccups/html
+     [:tr.plot-header ;; Plot Header
+      {:data-plot-id plot-id}
+      [:th plot-label]
+      [:td
+       {:data-meaning :plot-type} "S"]
+      [:td
+       {:data-axis :x} "FSC"]
+      [:td
+       {:data-axis :y} "SSC"]
+      [:td
+       {:data-axis :x} "FSC"]
+      [:td
+       {:data-axis :y} "SSC"]]
+     [:tr ;; Plot Stats
+      {:data-plot-id plot-id}
+      [:th plot-label]
+      [:td
+       {:data-meaning :plot-type} "S"]
+      [:td {:data-meaning :mean
+            :data-axis :x} "11.1"]
+      [:td {:data-meaning :mean
+            :data-axis :y} "22.2"]
+      [:td {:data-meaning :median
+            :data-axis :x} "33.3"]
+      [:td {:data-meaning :median
+            :data-axis :y} "44.4"]]
+     [:tr ;; Gate Stats
+      {:data-gate-id plot-id}
+      [:th gate-label]
+      [:td {:data-meaning :gate-type} "R"]
+      [:td {:data-meaning :mean
+            :data-axis :x} "55.5"]
+      [:td {:data-meaning :mean
+            :data-axis :y} "66.6"]
+      [:td {:data-meaning :median
+            :data-axis :x} "77.7"]
+      [:td {:data-meaning :median
+            :data-axis :y} "88.8"]])))
+
+(defn html-for-stats-table
+  "Generates the table to display statistical information."
+  []
+  (let [first-plot-id 1
+        last-plot-id 4]
+    (hiccups/html
+     [:table.statistics
+      [:colgroup [:col] [:col] [:col] [:col] [:col] [:col]]
+      [:tr ;; Table header
+       [:th]
+       [:th "Type"]
+       [:th "Mean" [:br] "(X)"]
+       [:th "Mean" [:br] "(Y)"]
+       [:th "Med" [:br] "(X)"]
+       [:th "Med" [:br] "(Y)"]]
+      (for [plot (range first-plot-id
+                        (inc last-plot-id))]
+        (html-for-single-plot-stats plot)) ])))
+
+(defn replace-html-for-stats-table!
+  []
+  (dom/swap-content! (dom/by-id "stats-table")
+                     (html-for-stats-table)))
+
+
+;;; ## Tests ##
 (def data-source-types [:plot :gate])
 (def ids [1 2 3 4])
 (def prefixes {:plot "PT-" :gate "gt-"})
@@ -206,12 +287,16 @@
   "
   []
 
-  ;; Test stats:
+  ;; Generate html for tables
+  (replace-html-for-stats-table!)
+  (test-counts-html)
+
+  ;; Fill tables with test data
+  ;; - stats table
   (test-data-source-label)
   (test-channel-label)
   (test-stats)
 
-  ;; Test counts:
-  (test-counts-html)
+  ;; - conuts table
   ;; Test ended...
   )
