@@ -35,8 +35,9 @@
        (format " td[data-axis=\"%s\"]"
                (name axis))))
 
-(defn stat
-  "Addresses the cells that display particular statistic information"
+(defn stat-by-axis
+  "Addresses the cells that display particular statistic
+  information that can be qualified by axis."
   [data-source-type id meaning axis]
   (str "table.statistics"
        (format " tr[data-%s-id=\"%s\"]"
@@ -234,7 +235,7 @@
 (def ids [1 2 3 4])
 (def prefixes {:plot "PT-" :gate "gt-"})
 (def axes [:x :y])
-(def meanings [:mean :median])
+(def meanings-by-axis [:mean :median :cv])
 
 (defn test-data-source-label
   "Verify that we label data sources properly.
@@ -259,10 +260,10 @@
         (set-value! (channel-label plot-id axis)
                     (label-channel plot-id axis)))))
 
-(defn test-stats
+(defn test-stats-by-axes
   "Test that we can access all stats properly."
   []
-  (let [label-stat (fn [ds line-id meaning axis]
+  (let [label-stat(fn [ds line-id meaning axis]
                      (str (get prefixes ds "???" )
                           line-id
                           ":" (name meaning)
@@ -272,12 +273,12 @@
     ;; do-seq inside defn in browser repl. So I manually unroll the
     ;; loop for axis to have the loop of only 3 levels deep.
     (doseq [ds data-source-types
-            meaning meanings
+            meaning meanings-by-axis
             id ids
             ]
-      (set-value! (stat ds id meaning :x)
+      (set-value! (stat-by-axis ds id meaning :x)
                   (label-stat ds id meaning :x))
-      (set-value! (stat ds id meaning :y)
+      (set-value! (stat-by-axis ds id meaning :y)
                   (label-stat ds id meaning :y)))))
 
 
@@ -296,7 +297,7 @@
   ;; - stats table
   (test-data-source-label)
   (test-channel-label)
-  (test-stats)
+  (test-stats-by-axes)
 
   ;; - conuts table
   ;; Test ended...
