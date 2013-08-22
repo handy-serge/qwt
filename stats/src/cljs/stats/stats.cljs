@@ -47,6 +47,17 @@
                (name meaning)
                (name axis))))
 
+(defn stat
+  "Addresses the cells that display particular statistic
+  information."
+  [data-source-type id meaning]
+  (str "table.statistics"
+       (format " tr[data-%s-id=\"%s\"]"
+               (name data-source-type)
+               id)
+       (format " td[data-meaning=\"%s\"]"
+               (name meaning))))
+
 ;; ## Operations ##
 (defn set-value!
   "Sets the values for the given statistic table region."
@@ -90,7 +101,7 @@
                        :data-axis :y} 22.2]
                  [:td {:data-meaning :count-absolute} 33.3]
                  [:td {:data-meaning :count-percentage} 44.4]
-                 [:td {:data-meaning :concentraton} 44.4]
+                 [:td {:data-meaning :concentration} 44.4]
                  [:td {:data-meaning :total-count} 55.5]
                  ]))
 
@@ -105,7 +116,7 @@
                        :data-axis :y} 22.2]
                  [:td {:data-meaning :count-absolute} 33.3]
                  [:td {:data-meaning :count-percentage} 44.4]
-                 [:td {:data-meaning :concentraton} 55.5]
+                 [:td {:data-meaning :concentration} 55.5]
                  [:td {:data-meaning :total-count} 66.6]
                  ]))
 
@@ -231,11 +242,19 @@
 
 
 ;;; ## Tests ##
-(def data-source-types [:plot :gate])
+(def data-source-types [:plot
+                        :gate])
 (def ids [1 2 3 4])
 (def prefixes {:plot "PT-" :gate "gt-"})
 (def axes [:x :y])
-(def meanings-by-axis [:mean :median :cv])
+(def meanings-by-axis [:mean
+                       :median
+                       :cv])
+
+(def meanings [:count-absolute
+               :count-percentage
+               :concentration
+               :total-count])
 
 (defn test-data-source-label
   "Verify that we label data sources properly.
@@ -281,6 +300,21 @@
       (set-value! (stat-by-axis ds id meaning :y)
                   (label-stat ds id meaning :y)))))
 
+(defn test-stats
+  "Test that we can access all stats properly."
+  []
+  (let [label-stat(fn [ds line-id meaning]
+                     (str (get prefixes ds "???" )
+                          line-id
+                          ":" (name meaning)))]
+
+    (doseq [ds data-source-types
+            meaning meanings
+            id ids
+            ]
+      (set-value! (stat ds id meaning)
+                  (label-stat ds id meaning)))))
+
 
 (defn test
   "Executes some functions in this file.
@@ -300,5 +334,6 @@
   (test-stats-by-axes)
 
   ;; - conuts table
+  (test-stats)
   ;; Test ended...
   )
