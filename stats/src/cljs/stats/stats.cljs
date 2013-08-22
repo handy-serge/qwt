@@ -236,6 +236,7 @@
                      (html-for-stats-table)))
 
 
+;;; ### HTML for statistics tabs panel
 ;;; The way I implement tabs is shamelessly stolen from:
 ;;; http://css-tricks.com/functional-css-tabs-revisited/
 (defn html-for-stats-tab-panel
