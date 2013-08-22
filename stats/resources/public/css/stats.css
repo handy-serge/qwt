@@ -10,13 +10,26 @@ table.statistics {
 }
 
 .statistics col {
-    width: 6em;
+    width: 4em;
 }
 
 .statistics th {
     vertical-align: top;
+    font-size: 0.8em;
 }
 
+.statistics td {
+    font-size: 0.8em;
+}
+
+.statistics td[data-meaning="count-absolute"] {
+    width: 7em;
+}
+
+.statistics td[data-meaning="mean"],
+.statistics td[data-meaning="median"] {
+    width: 6em;
+}
 
 /*
   The way I implement tabs is shamelessly stolen from:
@@ -24,7 +37,7 @@ table.statistics {
 */
 .tabs {
   position: relative;
-  min-height: 500px; /* This part sucks */
+  min-height: 22em; /* This part sucks */
   clear: both;
   margin: 25px 0;
 }
@@ -49,7 +62,7 @@ table.statistics {
   background: white;
   right: 0;
   bottom: 0;
-  padding: 20px;
+  padding: 3px;
   border: 1px solid #ccc;
 }
 [type=radio]:checked ~ label {

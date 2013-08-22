@@ -140,8 +140,8 @@
                  [:tr ;; Table header
                   [:th]
                   [:th "Type"]
-                  [:th "CV (%)" [:br] "(X)"]
-                  [:th "CV (%)" [:br] "(Y)"]
+                  [:th "CV(%)" [:br] "(X)"]
+                  [:th "CV(%)" [:br] "(Y)"]
                   [:th "Count" [:br] "(#)"]
                   [:th "Count" [:br] "(%)"]
                   [:th "[C]" [:br] "(p/ul)"]]
