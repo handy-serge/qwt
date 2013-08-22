@@ -82,43 +82,39 @@
   (hiccups/html [:tr.plot-header
                  {:data-plot-id plot-id}
                  [:th (plot-label plot-id)]
-                 [:td {:data-meaning :plot-type} "S"]
-                 [:td {:data-axis :x} "FSC"]
-                 [:td {:data-axis :y} "SCS"]
+                 [:td {:data-meaning :plot-type}]
+                 [:td {:data-axis :x}]
+                 [:td {:data-axis :y}]
 
                  ;; Last 4 columns are empty
-                 (for [i (range 0 4)]
+                 (for [i (range 0 3)]
                    [:td])]))
 
 (defn html-for-single-plot-counts-row
   [plot-id]
   (hiccups/html [:tr {:data-plot-id plot-id}
                  [:th (plot-label plot-id)]
-                 [:td {:data-meaning :plot-type} "S"]
+                 [:td {:data-meaning :plot-type}]
                  [:td {:data-meaning :cv
-                       :data-axis :x} 11.1]
+                       :data-axis :x}]
                  [:td {:data-meaning :cv
-                       :data-axis :y} 22.2]
-                 [:td {:data-meaning :count-absolute} 33.3]
-                 [:td {:data-meaning :count-percentage} 44.4]
-                 [:td {:data-meaning :concentration} 44.4]
-                 [:td {:data-meaning :total-count} 55.5]
-                 ]))
+                       :data-axis :y}]
+                 [:td {:data-meaning :count-absolute}]
+                 [:td {:data-meaning :count-percentage}]
+                 [:td {:data-meaning :concentration}]]))
 
 (defn html-for-single-gate-counts-row
   [gate-id]
   (hiccups/html [:tr {:data-gate-id gate-id}
                  [:th (gate-label gate-id)]
-                 [:td {:data-meaning :gate-type} "K"]
+                 [:td {:data-meaning :gate-type}]
                  [:td {:data-meaning :cv
-                       :data-axis :x} 11.1]
+                       :data-axis :x}]
                  [:td {:data-meaning :cv
-                       :data-axis :y} 22.2]
-                 [:td {:data-meaning :count-absolute} 33.3]
-                 [:td {:data-meaning :count-percentage} 44.4]
-                 [:td {:data-meaning :concentration} 55.5]
-                 [:td {:data-meaning :total-count} 66.6]
-                 ]))
+                       :data-axis :y}]
+                 [:td {:data-meaning :count-absolute}]
+                 [:td {:data-meaning :count-percentage}]
+                 [:td {:data-meaning :concentration}]]))
 
 (defn html-for-single-plot-counts
   "Generates HTML for 3 lines in a table that represents the counts of one plot:
@@ -138,7 +134,7 @@
   (hiccups/html [:table {:id "counts-table"
                          :class "statistics"}
                  [:colgroup
-                  (for [i (range 0 8)]
+                  (for [i (range 0 7)]
                     [:col])]
 
                  [:tr ;; Table header
@@ -148,8 +144,7 @@
                   [:th "CV (%)" [:br] "(Y)"]
                   [:th "Count" [:br] "(#)"]
                   [:th "Count" [:br] "(%)"]
-                  [:th "[C]" [:br] "(p/ul)"]
-                  [:th "Total #" [:br] "(10ml)"] ]
+                  [:th "[C]" [:br] "(p/ul)"]]
                  (for [plot-id (range 1 5)]
                    (html-for-single-plot-counts plot-id))
                  ]))
@@ -181,40 +176,40 @@
       {:data-plot-id plot-id}
       [:th plot-label]
       [:td
-       {:data-meaning :plot-type} "S"]
+       {:data-meaning :plot-type}]
       [:td
-       {:data-axis :x} "FSC"]
+       {:data-axis :x}]
       [:td
-       {:data-axis :y} "SSC"]
+       {:data-axis :y}]
       [:td
-       {:data-axis :x} "FSC"]
+       {:data-axis :x}]
       [:td
-       {:data-axis :y} "SSC"]]
+       {:data-axis :y}]]
      [:tr ;; Plot Stats
       {:data-plot-id plot-id}
       [:th plot-label]
       [:td
-       {:data-meaning :plot-type} "S"]
+       {:data-meaning :plot-type}]
       [:td {:data-meaning :mean
-            :data-axis :x} "11.1"]
+            :data-axis :x}]
       [:td {:data-meaning :mean
-            :data-axis :y} "22.2"]
+            :data-axis :y}]
       [:td {:data-meaning :median
-            :data-axis :x} "33.3"]
+            :data-axis :x}]
       [:td {:data-meaning :median
-            :data-axis :y} "44.4"]]
+            :data-axis :y}]]
      [:tr ;; Gate Stats
       {:data-gate-id plot-id}
       [:th gate-label]
-      [:td {:data-meaning :gate-type} "R"]
+      [:td {:data-meaning :gate-type}]
       [:td {:data-meaning :mean
-            :data-axis :x} "55.5"]
+            :data-axis :x}]
       [:td {:data-meaning :mean
-            :data-axis :y} "66.6"]
+            :data-axis :y}]
       [:td {:data-meaning :median
-            :data-axis :x} "77.7"]
+            :data-axis :x}]
       [:td {:data-meaning :median
-            :data-axis :y} "88.8"]])))
+            :data-axis :y}]])))
 
 (defn html-for-stats-table
   "Generates the table to display statistical information."
@@ -240,6 +235,42 @@
   (dom/swap-content! (dom/by-id "stats-table")
                      (html-for-stats-table)))
 
+
+;;; The way I implement tabs is shamelessly stolen from:
+;;; http://css-tricks.com/functional-css-tabs-revisited/
+(defn html-for-stats-tab-panel
+  "Generates HTML for tab panel that contains stats and counts tables."
+  []
+  (hiccups/html
+   [:div.tabs
+    [:div.tab
+     [:input {:type :radio
+              :id :tab-1
+              :name :tab-group-1
+              :checked true}]
+     [:label {:for :tab-1}
+      "Counts"]
+     [:div.content
+      [:table#counts-table]]]
+    [:div.tab
+     [:input {:type :radio
+              :id :tab-2
+              :name :tab-group-1}]
+     [:label {:for :tab-2}
+      "Stats"]
+     [:div.content
+      [:table#stats-table]]]]))
+
+(defn replace-html-for-stats-tab-panel!
+  []
+  (dom/swap-content! (dom/by-id "stats-tab-panel")
+                     (html-for-stats-tab-panel)))
+
+;;; ## Initialization ##
+(defn initialize! []
+  (replace-html-for-stats-tab-panel!)
+  (replace-html-for-counts-table!)
+  (replace-html-for-stats-table!))
 
 ;;; ## Tests ##
 (def data-source-types [:plot
@@ -323,9 +354,8 @@
   "
   []
 
-  ;; Generate html for tables
-  (replace-html-for-stats-table!)
-  (replace-html-for-counts-table!)
+  ;; Generate all needed html
+  (initialize!)
 
   ;; Fill tables with test data
   ;; - stats table
