@@ -243,24 +243,24 @@
   "Generates HTML for tab panel that contains stats and counts tables."
   []
   (hiccups/html
-   [:div.tabs
-    [:div.tab
+   [:div.statistics.tab_panel
+    [:div.statistics.single_tab
      [:input {:type :radio
               :id :tab-1
               :name :tab-group-1
               :checked true}]
      [:label {:for :tab-1}
       "Counts"]
-     [:div.content
-      [:table#counts-table]]]
-    [:div.tab
+     [:div.statistics.tab_content
+      [:table#counts-table.statistics]]]
+    [:div.statistics.single_tab
      [:input {:type :radio
               :id :tab-2
               :name :tab-group-1}]
      [:label {:for :tab-2}
       "Stats"]
-     [:div.content
-      [:table#stats-table]]]]))
+     [:div.statistics.tab_content
+      [:table#stats-table.statistics]]]]))
 
 (defn replace-html-for-stats-tab-panel!
   []

@@ -35,16 +35,17 @@ table.statistics {
   The way I implement tabs is shamelessly stolen from:
   http://css-tricks.com/functional-css-tabs-revisited/
 */
-#control-panel .tabs {
+.statistics.tab_panel {
   position: relative;
   min-height: 22em; /* This part sucks */
   clear: both;
   margin: 25px 0;
 }
-#control-panel .tab {
+
+.statistics.single_tab {
   float: left;
 }
-#control-panel .tab label {
+.statistics.single_tab label {
   background: #eee;
   padding: 10px;
   border: 1px solid #ccc;
@@ -52,10 +53,12 @@ table.statistics {
   position: relative;
   left: 1px;
 }
-#control-panel .tab [type=radio] {
+
+.statistics.single_tab [type=radio] {
   display: none;
 }
-#control-panel .content {
+
+.statistics.tab_content {
   position: absolute;
   top: 28px;
   left: 0;
@@ -65,11 +68,13 @@ table.statistics {
   padding: 3px;
   border: 1px solid #ccc;
 }
-#control-panel [type=radio]:checked ~ label {
+
+.statistics.single_tab [type=radio]:checked ~ label {
   background: white;
   border-bottom: 1px solid white;
   z-index: 2;
 }
-#control-panel [type=radio]:checked ~ label ~ .content {
+
+.statistics.single_tab [type=radio]:checked ~ label ~ .tab_content {
   z-index: 1;
 }

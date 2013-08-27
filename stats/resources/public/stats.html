@@ -4,24 +4,154 @@
     <meta charset="utf-8">
     <title>Statistics view page</title>
     <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-       <!-- CSS from Blacksmartie. -->
-       <link rel="stylesheet" href="css/handyem.css">
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    <!-- CSS from Blacksmartie. -->
+    <link rel="stylesheet" href="css/handyem.css">
 
-       <!-- Custom CSS for statistics display -->
-       <link rel="stylesheet" href="css/stats.css">
+    <!-- Custom CSS for statistics display -->
+    <link rel="stylesheet" href="css/stats.css">
 
-       <!-- pointing to cljsbuild generated js file -->
-       <script src="js/stats.js"></script>
+    <!-- pointing to cljsbuild generated js file -->
+    <script src="js/stats.js"></script>
   </head>
   <body>
+    <h1> Stats tab panel</h1>
+    <div class="statistics tab_panel">
+      <div class="statistics single_tab">
+        <input type="radio" id="tab-1" name="tab-group-1" checked>
+        <label for="tab-1">Counts</label>
+        <div class="statistics tab_content">
+          <table id="counts-table" class="statistics">
+            <colgroup>
+              <col></col>
+              <col></col>
+              <col></col>
+              <col></col>
+              <col></col>
+              <col></col>
+              <col></col>
+              <col></col>
+            </colgroup>
+            <tr>
+              <th></th>
+              <th>Type</th>
+              <th>CV(%)</br>(X)</th>
+              <th>CV(%)</br>(Y)</th>
+              <th>Count</br>(#)</th>
+              <th>Count</br>(%)</th>
+              <th>[C]</br>(p/ul)</th>
+              <th>Total #</br>(10ml)</th>
+            </tr>
+            <!-- Plot 1 -->
+            <!-- Plot 1: Header -->
+            <tr class="plot-header"
+                data-plot-id="1">
+              <th>Plot 1</th>
+              <td data-meaning="plot-type"
+                  >S</td>
+              <td data-axis="x"
+                  >FSC</td>
+              <td data-axis="y"
+                  >SSC</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <!-- Plot 1: Stats -->
+            <tr data-plot-id="1">
+              <th>Plot 1</th>
+              <td data-meaning="plot-type">S</td>
+              <td data-meaning="cv"
+                  data-axis="x">111.1</td>
+              <td data-meaning="cv"
+                  data-axis="y">222.2</td>
+              <td data-meaning=""
+                  data-axis="x">333.3</td>
+              <td data-meaning="median"
+                  data-axis="y">444.4</td>
+              <td data-meaning="median"
+                  data-axis="y">444.4</td>
+              <td data-meaning="median"
+                  data-axis="y">444.4</td>
+            </tr>
+            <!-- Plot 1: Gate 1 -->
+            <tr data-gate-id="1">
+              <th>G1</th>
+              <td data-meaning="gate-type">R</td>
+              <td data-meaning="mean"
+                  data-axis="x">11.1</td>
+              <td data-meaning="mean"
+                  data-axis="y">22.2</td>
+              <td data-meaning="median"
+                  data-axis="x">33.3</td>
+              <td data-meaning="median"
+                  data-axis="y">44.4</td>
+              <td data-meaning="median"
+                  data-axis="y">44.4</td>
+              <td data-meaning="median"
+                  data-axis="y">44.4</td>
+            </tr>
 
-    <h1>Statistics table</h1>
-    <p>This page displays statistical information. </p>
+            <!-- Plot 2 -->
+            <!-- Plot 2: Header -->
+            <tr class="plot-header"
+                data-plot-id="2">
+              <th>Plot 2</th>
+              <td data-meaning="plot-type">H</td>
+              <td data-axis="x"></td>
+              <td data-axis="y"></td>
+              <td data-axis="x"></td>
+              <td data-axis="y"></td>
+              <td data-axis="y"></td>
+              <td data-axis="y"></td>
+            </tr>
+            <!-- Plot 2: Stats -->
+            <tr data-plot-id="2">
+              <th>Plot 2</th>
+              <td data-meaning="plot-type">H</td>
+              <td data-meaning="mean"
+                  data-axis="x"></td>
+              <td data-meaning="mean"
+                  data-axis="y"></td>
+              <td data-meaning="median"
+                  data-axis="x"></td>
+              <td data-meaning="median"
+                  data-axis="y"></td>
+              <td data-meaning="median"
+                  data-axis="y"></td>
+              <td data-meaning="median"
+                  data-axis="y"></td>
+            </tr>
+            <!-- Plot 2: Gate 2 -->
+            <tr data-gate-id="2">
+              <th>G2</th>
+              <td data-meaning="gate-type">M</td>
+              <td data-meaning="mean"
+                  data-axis="x"></td>
+              <td data-meaning="mean"
+                  data-axis="y"></td>
+              <td data-meaning="median"
+                  data-axis="x"></td>
+              <td data-meaning="median"
+                  data-axis="y"></td>
+              <td data-meaning="median"
+                  data-axis="y"></td>
+              <td data-meaning="median"
+                  data-axis="y"></td>
+            </tr>
+          </table>
 
-    <!-- Statics table -->
-    <table class="statistics">
+        </div>
+      </div>
+
+      <div class="statistics single_tab">
+        <input type="radio" id="tab-2" name="tab-group-1">
+        <label for="tab-2">Stats</label>
+        <div class="statistics tab_content">
+    <table id="stats-table"
+           class="statistics">
       <colgroup>
         <col></col>
         <col></col>
@@ -38,8 +168,6 @@
         <th>Med</br>(X)</th>
         <th>Med</br>(Y)</th>
       </tr>
-      <!-- Plot 1 -->
-      <!-- Plot 1: Header -->
       <tr class="plot-header"
           data-plot-id="1">
         <th>Plot 1</th>
@@ -54,8 +182,7 @@
         <td data-axis="y"
             >SSC</td>
       </tr>
-      <!-- Plot 1: Stats -->
-      <tr data-plot-id="1">
+       <tr data-plot-id="1">
         <th>Plot 1</th>
         <td data-meaning="plot-type">S</td>
         <td data-meaning="mean"
@@ -67,7 +194,6 @@
         <td data-meaning="median"
             data-axis="y">444.4</td>
       </tr>
-      <!-- Plot 1: Gate 1 -->
       <tr data-gate-id="1">
         <th>G1</th>
         <td data-meaning="gate-type">R</td>
@@ -81,8 +207,6 @@
             data-axis="y">44.4</td>
       </tr>
 
-      <!-- Plot 2 -->
-      <!-- Plot 2: Header -->
       <tr class="plot-header"
           data-plot-id="2">
         <th>Plot 2</th>
@@ -92,7 +216,6 @@
         <td data-axis="x"></td>
         <td data-axis="y"></td>
       </tr>
-      <!-- Plot 2: Stats -->
       <tr data-plot-id="2">
         <th>Plot 2</th>
         <td data-meaning="plot-type">H</td>
@@ -105,7 +228,6 @@
         <td data-meaning="median"
             data-axis="y"></td>
       </tr>
-      <!-- Plot 2: Gate 2 -->
       <tr data-gate-id="2">
         <th>G2</th>
         <td data-meaning="gate-type">M</td>
@@ -119,8 +241,6 @@
             data-axis="y"></td>
       </tr>
 
-      <!-- Plot 3 -->
-      <!-- Plot 3: Header -->
       <tr class="plot-header"
           data-plot-id="3">
         <th>Plot 3</th>
@@ -130,7 +250,7 @@
         <td data-axis="x">FSC</td>
         <td data-axis="y">SSC</td>
       </tr>
-      <tr data-plot-id="3"> <!-- Plot 3: Stats -->
+      <tr data-plot-id="3">
         <th>Plot 3</th>
         <td data-meaning="plot-type">S</td>
         <td data-meaning="mean"
@@ -142,7 +262,6 @@
         <td data-meaning="median"
             data-axis="y">444.4</td>
       </tr>
-      <!-- Plot 3: Gate 3 -->
       <tr data-gate-id="3">
         <th>G3</th>
         <td data-meaning="gate-type">R</td>
@@ -155,9 +274,6 @@
         <td data-meaning="median"
             data-axis="y">44.4</td>
       </tr>
-
-      <!-- Plot 4 -->
-      <!-- Plot 4: Header -->
       <tr class="plot-header"
           data-plot-id="4">
         <th>Plot 4</th>
@@ -167,7 +283,7 @@
         <td data-axis="x">FSC</td>
         <td data-axis="y">SSC</td>
       </tr>
-      <tr data-plot-id="4"> <!-- Plot 4: Stats -->
+      <tr data-plot-id="4">
         <th>Plot 4</th>
         <td data-meaning="plot-type">S</td>
         <td data-meaning="mean"
@@ -179,7 +295,6 @@
         <td data-meaning="median"
             data-axis="y">444.4</td>
       </tr>
-      <!-- Plot 4: Gate 4 -->
        <tr data-gate-id="4">
         <th>G4</th>
         <td data-meaning="gate-type">R</td>
@@ -194,27 +309,8 @@
       </tr>
     </table>
 
-    <h1> Stats tab panel</h1>
-<!--
-    <div class="tabs">
-      <div class="tab">
-        <input type="radio" id="tab-1" name="tab-group-1" checked>
-        <label for="tab-1">Counts</label>
-        <div class="content">
-          <table id="counts-table"></table>
-        </div>
-      </div>
-
-      <div class="tab">
-        <input type="radio" id="tab-2" name="tab-group-1">
-        <label for="tab-2">Stats</label>
-        <div class="content">
-          <table id="stats-table"></table>
         </div>
       </div>
     </div>
--->
-    <div id="stats-tab-panel"></div>
-
   </body>
 </html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Statistics counts page</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+       <!-- CSS from Blacksmartie. -->
+       <link rel="stylesheet" href="css/handyem.css">
+
+       <!-- Custom CSS for statistics display -->
+       <link rel="stylesheet" href="css/stats.css">
+
+       <!-- pointing to cljsbuild generated js file -->
+       <script src="js/stats.js"></script>
+  </head>
+  <body>
+
+    <h1>Counts display</h1>
+    <p>This page displays event counts</p>
+
+    <!-- Statics table -->
+    <table id="counts-table" class="statistics">
+      <colgroup>
+        <col></col>
+        <col></col>
+        <col></col>
+        <col></col>
+        <col></col>
+        <col></col>
+        <col></col>
+        <col></col>
+      </colgroup>
+      <tr>
+        <th></th>
+        <th>Type</th>
+        <th>CV(%)</br>(X)</th>
+        <th>CV(%)</br>(Y)</th>
+        <th>Count</br>(#)</th>
+        <th>Count</br>(%)</th>
+        <th>[C]</br>(p/ul)</th>
+        <th>Total #</br>(10ml)</th>
+      </tr>
+      <!-- Plot 1 -->
+      <!-- Plot 1: Header -->
+      <tr class="plot-header"
+          data-plot-id="1">
+        <th>Plot 1</th>
+        <td data-meaning="plot-type"
+            >S</td>
+        <td data-axis="x"
+            >FSC</td>
+        <td data-axis="y"
+            >SSC</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <!-- Plot 1: Stats -->
+      <tr data-plot-id="1">
+        <th>Plot 1</th>
+        <td data-meaning="plot-type">S</td>
+        <td data-meaning="cv"
+            data-axis="x">111.1</td>
+        <td data-meaning="cv"
+            data-axis="y">222.2</td>
+        <td data-meaning=""
+            data-axis="x">333.3</td>
+        <td data-meaning="median"
+            data-axis="y">444.4</td>
+        <td data-meaning="median"
+            data-axis="y">444.4</td>
+        <td data-meaning="median"
+            data-axis="y">444.4</td>
+      </tr>
+      <!-- Plot 1: Gate 1 -->
+      <tr data-gate-id="1">
+        <th>G1</th>
+        <td data-meaning="gate-type">R</td>
+        <td data-meaning="mean"
+            data-axis="x">11.1</td>
+        <td data-meaning="mean"
+            data-axis="y">22.2</td>
+        <td data-meaning="median"
+            data-axis="x">33.3</td>
+        <td data-meaning="median"
+            data-axis="y">44.4</td>
+        <td data-meaning="median"
+            data-axis="y">44.4</td>
+        <td data-meaning="median"
+            data-axis="y">44.4</td>
+      </tr>
+
+      <!-- Plot 2 -->
+      <!-- Plot 2: Header -->
+      <tr class="plot-header"
+          data-plot-id="2">
+        <th>Plot 2</th>
+        <td data-meaning="plot-type">H</td>
+        <td data-axis="x"></td>
+        <td data-axis="y"></td>
+        <td data-axis="x"></td>
+        <td data-axis="y"></td>
+        <td data-axis="y"></td>
+        <td data-axis="y"></td>
+      </tr>
+      <!-- Plot 2: Stats -->
+      <tr data-plot-id="2">
+        <th>Plot 2</th>
+        <td data-meaning="plot-type">H</td>
+        <td data-meaning="mean"
+            data-axis="x"></td>
+        <td data-meaning="mean"
+            data-axis="y"></td>
+        <td data-meaning="median"
+            data-axis="x"></td>
+        <td data-meaning="median"
+            data-axis="y"></td>
+        <td data-meaning="median"
+            data-axis="y"></td>
+        <td data-meaning="median"
+            data-axis="y"></td>
+      </tr>
+      <!-- Plot 2: Gate 2 -->
+      <tr data-gate-id="2">
+        <th>G2</th>
+        <td data-meaning="gate-type">M</td>
+        <td data-meaning="mean"
+            data-axis="x"></td>
+        <td data-meaning="mean"
+            data-axis="y"></td>
+        <td data-meaning="median"
+            data-axis="x"></td>
+        <td data-meaning="median"
+            data-axis="y"></td>
+        <td data-meaning="median"
+            data-axis="y"></td>
+        <td data-meaning="median"
+            data-axis="y"></td>
+      </tr>
+    </table>
+  </body>
+</html>
