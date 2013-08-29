@@ -69,8 +69,8 @@
 ;; ## HTML generation ##
 (defn plot-label
   "Generates label for the plot."
-  [plot-id]
-  (format "Plot %s" plot-id))
+  [_]
+  "All")
 
 (defn gate-label
   "Generates label for the gate."
