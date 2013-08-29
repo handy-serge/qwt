@@ -5,8 +5,8 @@
   (:require-macros [hiccups.core :as hiccups])
   (:require [domina :as dom]
             [domina.css :as css]
-            [hiccups.runtime :as hiccupsrt]
-            ))
+            [domina.events :as events]
+            [hiccups.runtime :as hiccupsrt]))
 
 ;;; ## Data access ##
 
@@ -267,11 +267,23 @@
   (dom/swap-content! (dom/by-id "stats-tab-panel")
                      (html-for-stats-tab-panel)))
 
+;;; ## Handle user input ##
+(defn save-as-csv []
+  (js/alert "CSV is saved"))
+
+(defn attach-event-listeners! []
+  (when (and js/document
+           (.-getElementById js/document))
+    (events/listen! (dom/by-id "save-as-csv") :click save-as-csv)))
+
+
 ;;; ## Initialization ##
 (defn initialize! []
   (replace-html-for-stats-tab-panel!)
   (replace-html-for-counts-table!)
-  (replace-html-for-stats-table!))
+  (replace-html-for-stats-table!)
+  (attach-event-listeners!)
+  nil)
 
 ;;; ## Tests ##
 (def data-source-types [:plot
