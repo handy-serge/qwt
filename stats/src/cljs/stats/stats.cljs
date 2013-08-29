@@ -69,7 +69,11 @@
 ;; ## HTML generation ##
 (defn plot-label
   "Generates label for the plot."
-  [_]
+  [plot-id]
+  (format "Plot %s" plot-id))
+
+(def plot-total-label
+  "Label displayed for plot statistics"
   "All")
 
 (defn gate-label
@@ -94,7 +98,7 @@
 (defn html-for-single-plot-counts-row
   [plot-id]
   (hiccups/html [:tr {:data-plot-id plot-id}
-                 [:th (plot-label plot-id)]
+                 [:th plot-total-label]
                  [:td {:data-meaning :plot-type}]
                  [:td {:data-meaning :cv
                        :data-axis :x}]
@@ -188,7 +192,7 @@
        {:data-axis :y}]]
      [:tr ;; Plot Stats
       {:data-plot-id plot-id}
-      [:th plot-label]
+      [:th plot-total-label]
       [:td
        {:data-meaning :plot-type}]
       [:td {:data-meaning :mean
