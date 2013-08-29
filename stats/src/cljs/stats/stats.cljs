@@ -243,7 +243,10 @@
   "Generates HTML for tab panel that contains stats and counts tables."
   []
   (hiccups/html
-   [:div.statistics.tab_panel
+   [:div#stats-tab-panel.statistics.tab_panel
+    [:button#save-as-csv.statistics.tab_panel_button {:role :button}
+     "Save table as .csv"]
+
     [:div.statistics.single_tab
      [:input {:type :radio
               :id :tab-1
