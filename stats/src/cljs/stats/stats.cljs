@@ -2,7 +2,8 @@
   "Updates statistics table.
 
   Statistics table displays the means and medians for the data displayed in gates and plots."
-  (:require-macros [hiccups.core :as hiccups])
+  (:require-macros [hiccups.core :as hiccups]
+                   [stats.cytoapp :refer [when-cytoapp-as]])
   (:require [domina :as dom]
             [domina.css :as css]
             [domina.events :as events]
@@ -270,14 +271,25 @@
   (dom/swap-content! (dom/by-id "stats-tab-panel")
                      (html-for-stats-tab-panel)))
 
+
+;;; ## Generate CSV ##
+(defn generate-csv []
+  (str "source;id;type\r\n"
+       "plot;1;S\r\n"
+       "gate;1:R\r\n"))
+
 ;;; ## Handle user input ##
-(defn save-as-csv []
-  (js/alert "CSV is saved"))
+(defn save-statistics-as-csv []
+  (.log js/console "cytoapp.saveStatisticsAsCsv: start")
+  (when-cytoapp-as [app]
+                   (.saveStatisticsAsCsv app
+                                         (generate-csv)))
+  (.log js/console "cytoapp.saveStatisticsAsCsv: finish"))
 
 (defn attach-event-listeners! []
   (when (and js/document
            (.-getElementById js/document))
-    (events/listen! (dom/by-id "save-as-csv") :click save-as-csv)))
+    (events/listen! (dom/by-id "save-as-csv") :click save-statistics-as-csv)))
 
 
 ;;; ## Initialization ##
