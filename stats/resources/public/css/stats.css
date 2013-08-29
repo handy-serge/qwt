@@ -45,6 +45,11 @@ table.statistics {
 .statistics.single_tab {
   float: left;
 }
+
+.statistics.tab_panel_button {
+  float: right;
+}
+
 .statistics.single_tab label {
   background: #eee;
   padding: 10px;
