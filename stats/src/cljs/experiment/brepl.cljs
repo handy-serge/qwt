@@ -1,4 +1,4 @@
-(ns experiment.stats.brepl
+(ns experiment.brepl
   "Connection to the brower REPL server."
   (:require [clojure.browser.repl :as repl]))
 
