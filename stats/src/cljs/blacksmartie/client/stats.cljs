@@ -2,14 +2,12 @@
   "Updates statistics table.
 
   Statistics table displays the means and medians for the data displayed in gates and plots."
-  (:require-macros [blacksmartie.client.cytoapp :refer [when-cytoapp-as]])
   (:require [domina :as dom]
             [domina.css :as css]
-            [domina.events :as events]
-            [blacksmartie.client.stats.generate-html :refer [generate-html!]]))
+            [blacksmartie.client.stats.generate-html :refer [generate-html!]]
+            [blacksmartie.client.stats.handle-user-input :refer [attach-event-listeners!]]))
 
 ;;; ## Data access ##
-
 (defn data-source-type
   "Addresses the table cells that display the type of the data source.
 
@@ -64,25 +62,6 @@
   [selector value]
   (dom/set-text! (css/sel selector)
                  value))
-
-;;; ## Generate CSV ##
-(defn generate-csv []
-  (str "source;id;type\r\n"
-       "plot;1;S\r\n"
-       "gate;1:R\r\n"))
-
-;;; ## Handle user input ##
-(defn save-statistics-as-csv []
-  (.log js/console "cytoapp.saveStatisticsAsCsv: start")
-  (when-cytoapp-as [app]
-                   (.saveStatisticsAsCsv app
-                                         (generate-csv)))
-  (.log js/console "cytoapp.saveStatisticsAsCsv: finish"))
-
-(defn attach-event-listeners! []
-  (when (and js/document
-           (.-getElementById js/document))
-    (events/listen! (dom/by-id "save-as-csv") :click save-statistics-as-csv)))
 
 
 ;;; ## Initialization ##
