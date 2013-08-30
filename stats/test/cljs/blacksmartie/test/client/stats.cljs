@@ -1,4 +1,4 @@
-(ns stats.test.stats
+(ns blacksmartie.test.client.stats
   "Tests 'blacksmarie.client.stats' namespace"
   (:require [blacksmartie.client.stats :refer [set-value!
                                                data-source-type

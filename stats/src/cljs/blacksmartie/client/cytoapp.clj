@@ -1,4 +1,4 @@
-(ns stats.cytoapp)
+(ns blacksmartie.client.cytoapp)
 
 
 (defmacro when-cytoapp-as [[object] & body]

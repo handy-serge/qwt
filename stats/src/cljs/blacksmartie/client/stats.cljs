@@ -3,7 +3,7 @@
 
   Statistics table displays the means and medians for the data displayed in gates and plots."
   (:require-macros [hiccups.core :as hiccups]
-                   [stats.cytoapp :refer [when-cytoapp-as]])
+                   [blacksmartie.client.cytoapp :refer [when-cytoapp-as]])
   (:require [domina :as dom]
             [domina.css :as css]
             [domina.events :as events]
