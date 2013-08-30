@@ -1,4 +1,4 @@
-(defproject stats "0.1.0-SNAPSHOT"
+(defproject experiment-stats "0.1.0-SNAPSHOT"
   :description
   "# Statictics display in ClojureScript to be used by Cytodyem. #
 
@@ -24,4 +24,4 @@
   :plugins [[lein-ring "0.8.6"]
             [lein-cljsbuild "0.3.2"]]
 
-  :ring {:handler stats.handler/app})
+  :ring {:handler experiment.handler/app})
