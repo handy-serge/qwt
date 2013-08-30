@@ -1,9 +1,11 @@
-{:dev {:source-paths ["src/clj" "src/cljs"]
-       :test-paths ["test"]
+{:dev {:source-paths ["src/clj"
+                      "src/cljs"]
+       :test-paths ["test/clj"]
 
        :cljsbuild {:builds
                    [{;; CLJS source code path
-                     :source-paths ["src/cljs"]
+                     :source-paths ["src/cljs"
+                                    "test/cljs"]
 
                      :compiler {;; Google Clojure (CLS) configuration:
                                 :output-to "resources/public/js/stats.js"
