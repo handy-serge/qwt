@@ -18,13 +18,7 @@
   - `id` Id of the data source
   "
   [data-source-type id]
-  (operations/DataSourceType. data-source-type id)
-  #_(str "table.statistics"
-       (format " tr[data-%s-id=\"%s\"]"
-               (name data-source-type)
-               id)
-       (format " td[data-meaning=\"%s-type\"]"
-               (name data-source-type))))
+  (operations/DataSourceType. data-source-type id))
 
 (defn channel-label
   "Addresses the cells that display the channel label for the given axis"
