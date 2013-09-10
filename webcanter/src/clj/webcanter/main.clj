@@ -9,7 +9,10 @@
             [ring.middleware.params :refer [wrap-params]]
             [incanter.core :as incanter]
             [incanter.stats :as stats]
-            [incanter.charts :as charts])
+            [incanter.charts :as charts]
+            [clojure.tools.logging :as log]
+            [clj-logging-config.log4j :refer [set-logger!]]
+            [webcanter.nrepl :as nrepl])
   (:import (java.io ByteArrayOutputStream
                     ByteArrayInputStream)))
 
@@ -79,12 +82,20 @@
 (defroutes webservice
   (GET "/" []
        sample-form)
+  (route/resources "/")
   (wrap-params (GET "/sample-normal" [request size mean sd]
                     (gen-samp-hist-png request size mean sd))))
 
 
 ;; Run webservice.
 (defn -main [& args]
+  (set-logger!)
+  (try
+    (log/info "Initializing repl")
+    (nrepl/initialize)
+    (nrepl/log-server-status)
+    (catch Throwable t
+      (log/error t "Failed to start nREPL server")))
   (run-jetty #'webservice 
              {:port 8080
               :join? false}))

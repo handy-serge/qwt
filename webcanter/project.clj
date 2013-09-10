@@ -6,4 +6,8 @@
                  [incanter "1.5.4"]
                  [ring "1.2.0"]
                  [compojure "1.1.5"]]
+
+  :plugins [[lein-cljsbuild "0.3.2"]]
+  :source-paths ["src/clj" "src/cljs"]
+  :test-paths ["test"]
   :main webcanter.main)
