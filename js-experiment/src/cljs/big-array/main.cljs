@@ -2,17 +2,6 @@
   (:require [domina :as dom]
             [domina.css :as css]))
 
-(defn sum [x y]
-  (+ x y))
-
-
-(defn a [i j]
-  (/ 1 (+ (/ (* (+  ) (+ i j 1)) 2) i 1)))
-
-
-(defn new-array [size]
-  (js/Array. size))
-
 
 (defn send-text-to-html [selector text]
   (dom/set-text! (css/sel "#"selector) (str text)))
@@ -55,8 +44,7 @@
                   (send-text-to-html "#nb-bytes-per-event-1" (* 4 (count (aget my-events 0))))
                   )))]
     (send-text-to-html "#bench-time-1" elapsed-time)
-    elapsed-time
-    ))
+    elapsed-time))
 
 
 (defn bench-array-addition
@@ -69,13 +57,11 @@
     (send-text-to-html "#nb-of-events-2" (count my-events))
     (send-text-to-html "#nb-bytes-per-event-2" (* 4 (count (aget my-events 0))))
     (send-text-to-html "#bench-time-2" elapsed-time)
-    elapsed-time
-    ))
+    elapsed-time))
 
 
 (defn ^:export main []
   (bench-array-creation 6000000 48)
-  (bench-array-addition 6000000 48)
-  )
+  (bench-array-addition 6000000 48))
  
   
