@@ -38,7 +38,6 @@
 
 
        ;; Rbepl configuration:
-;;       :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
        :injections [(require '[webcanter.nrepl :as nrepl])
                     (defn browser-repl []
                       (nrepl/browser-repl))]
