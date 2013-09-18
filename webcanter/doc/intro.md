@@ -13,7 +13,7 @@ Initial tutorial was written for the really old version of Compojure.
 Compojure was split into several pieces and the syntax of the route
 definition was changed.
 
-Key peaces are the dependencies definitions in the project:
+Key pieces are the dependencies definitions in the project:
 
 ```clojure
 (defproject webcanter "0.1.0-SNAPSHOT"
@@ -124,7 +124,7 @@ Our operation is quite complex:
 
 - Generate data
 - Calculate the scatter plot
-- Transform scannter plot to PNG
+- Transform scatter plot to PNG
 - Send data via HTTP
 
 
