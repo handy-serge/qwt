@@ -10,4 +10,9 @@
   :plugins [[lein-cljsbuild "0.3.2"]]
   :source-paths ["src/clj" "src/cljs"]
   :test-paths ["test"]
-  :main webcanter.main)
+  :main webcanter.main
+
+  ;; I try to check how much data we can process, so we tell Java to
+  ;; get more memory.
+  :jvm-opts ["-Xmx1g" ; Maximum heap size - 1Gigabyte.
+             ])

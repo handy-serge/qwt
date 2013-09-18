@@ -131,3 +131,147 @@ Our operation is quite complex:
 Which part takes the time?
 Could it run faster?
 Need to run some more specific benchmarks.
+
+## Time of the data creation and plotting
+Now I create the function that populates arbitrary dataset with the
+random data.
+
+```clojure
+(defn random-data
+  "Generate random dataset"
+  [size]
+  (take size
+        (for [_ (range size)
+              :let [x (rand-int 10000)
+                    y (rand-int  10000)]]
+          [x y])))
+```
+
+This benchmark can be done if we run the following in the REPL (change
+the constant for the number of points:
+
+```clojure
+(dotimes  [j 5] (time  (do (random-dataset 540000) nil)))
+```
+
+We see that subsequent allocations are much faster.
+
+Now we time how long does it take to allocate the memory:
+
+| Number of points |      Duration   |
+|-----------------:|----------------:|
+|              100 |    0.03-0.15 ms |
+|             1000 |    0.05-0.23 ms |
+|            10000 |    0.04-0.48 ms |
+|           100000 |    0.05-0.13 ms |
+|           500000 |    0.05-0.12 ms |
+|           540000 |    0.05-0.13 ms |
+|          1000000 |    0.04-0.14 ms |
+
+Quite good, we see that allocate the memory for dataset - is quite
+quick. Below 0.2 mseconds in all cases.
+
+We create couple of random datasets - for example `r-kilo` - Dataset
+that contains 1000 poins, and so long, and run in the repl the
+following code.
+
+```clojure
+(dotimes [_ 3] (time  (scatter-plot :x :y :data r100)))
+```
+
+
+Now we can time how long does it take to create the scatterplot
+itself:
+
+
+| Number of points |      Duration            |
+|-----------------:|-------------------------:|
+|              100 |      1.7  -      3.95 ms |
+|             1000 |      5.83 -     13.2  ms |
+|            10000 |     65.35 -    101.48 ms |
+|           100000 |   1954.7  -   2217.7  ms |
+|           540000 |  45610.5  -  56099.5  ms |
+|          1000000 | 152891.7  - 155316.4  ms |
+
+Quite discouraging - create `JFreeChart` object with many points at
+the fly takes much more time dependingly number of plots.
+
+Creating the scatter plot half million by halfmillion takes almost a
+minute. It looks like `JFreeChart` is less optimized than one would
+hope.
+
+Display the dataset with 540000 points takes 5.71 milliseconds, but
+after there is a visible delay probably a second, while the dataset
+gets drawn on a screen. The time of display is about the same for
+whatever number of points in dataset, which is expected.
+
+## Calculating dencity plots with incanter.
+Imagine that we reduce number of points in a scatter plot by putting
+only unique points and encoding the number of points with a color.
+
+This is very easy to do in incanter, as function `$rollup` is
+specially designed for this kind of operations.
+
+```clojure
+(defn count-same-place-points
+  "Takes dataset with 2 columns `:x` and `:y` and returns
+   dataset that adds third column `:points-count` with the number of
+    points on every coordinate."
+  [data]
+  ($rollup :count :points-count [:x :y] data))
+```
+
+And then we could display it in dataset by using the function like this.
+
+```clojure
+(defn scatter-plot-of-counts
+  "Returns the scatter plot that groups together the points at the same place and shows them as colors."
+  [dataset]
+  (scatter-plot :x :y
+                :group-by :points-count
+                :data (count-same-place-points dataset)))
+```
+
+How long does it takes to count points at the same coordinates for
+dataset?
+
+
+| Number of points |      Duration            |
+|-----------------:|-------------------------:|
+|              100 |      0.65 -     0.77 ms  |
+|             1000 |      3.31 -     3.72  ms |
+|            10000 |     31.3  -    54.1 ms   |
+|           100000 |   472.34  -   596.62  ms |
+|           540000 |  6321.5   -  9359.30  ms |
+|          1000000 | 18163.56  - 24065.92  ms |
+
+Calculations in clojre are about 10 times faster then creation of the
+JFreeChart.
+
+How long it take to combine several datasets together?
+I define synthetic dataset with the function like this:
+
+```clojure
+(defn combine-many-random-datasets
+  "Sytnthetic database of many points"
+  []
+  ;; Merge together many datasets.
+  (conj-rows r-kilo-100 r-kilo-100 r-kilo-100
+             r-kilo r-kilo r-kilo r-kilo r-kilo r-kilo r-kilo r-kilo
+             r100 r100 r100 r100 r100 r100 r100 r100 r100 r100 r100 r100 r100))
+```
+Combine 25 datasets takes around 1ms - it is quite efficient.
+
+This dataset has about 263000 points. To calculate the counts for
+points on this dataset takes about 1500 ms. To display scatter plot
+with counts for this takes about 8 seconds.
+
+## Conclusions
+- JFreeChart as an implementation for the of the shelf plotting may be
+  not sufficient for big number of plots. Though it would be
+  interesting to check how many different plots could be in a real
+  cytometric data.
+
+- The data manipulations of incanter could be potentially interesting
+  in assesing ready-made components for data manipulation. The data
+  manipulation API is worth further look.
