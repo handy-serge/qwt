@@ -164,6 +164,11 @@
       <DependentUpon>ScatterGraph.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FCSAPI\FCSAPI.vcxproj">
+      <Project>{56f94176-e720-4490-9f16-8ffda0f0c00a}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\lc.targets" />
