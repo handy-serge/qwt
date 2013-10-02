@@ -5,6 +5,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sandbox", "sandbox\sandbox.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FCSAPI", "FCSAPI\FCSAPI.vcxproj", "{56F94176-E720-4490-9F16-8FFDA0F0C00A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GateDrawing", "GateDrawing\GateDrawing.vcxproj", "{F51E6C27-2892-4597-AE94-1DCAFD538D20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -19,6 +21,10 @@ Global
 		{56F94176-E720-4490-9F16-8FFDA0F0C00A}.Debug|Win32.Build.0 = Debug|Win32
 		{56F94176-E720-4490-9F16-8FFDA0F0C00A}.Release|Win32.ActiveCfg = Release|Win32
 		{56F94176-E720-4490-9F16-8FFDA0F0C00A}.Release|Win32.Build.0 = Release|Win32
+		{F51E6C27-2892-4597-AE94-1DCAFD538D20}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F51E6C27-2892-4597-AE94-1DCAFD538D20}.Debug|Win32.Build.0 = Debug|Win32
+		{F51E6C27-2892-4597-AE94-1DCAFD538D20}.Release|Win32.ActiveCfg = Release|Win32
+		{F51E6C27-2892-4597-AE94-1DCAFD538D20}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

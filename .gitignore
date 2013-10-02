@@ -20,3 +20,5 @@ cytodyem_plot_extract/sandbox/Debug/*
 cytodyem_plot_extract/sandbox/FCSAPI/Debug/*
 cytodyem_plot_extract/sandbox/sandbox/Debug/*
 *.opensdf
+cytodyem_plot_extract/sandbox/GateDrawing/Debug/*
+cytodyem_plot_extract/sandbox/GateDrawing/Release/*

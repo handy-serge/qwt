@@ -2,7 +2,17 @@
 #include "ScatterGraph.h"
 
 
-namespace sandbox {
+namespace sandbox 
+{;
+
+ScatterGraph::ScatterGraph(void)  
+{
+    InitializeComponent();
+
+    m_GateDrawing = GateDrawing::IGateDrawing::createGateDrawingForScatterPlot();
+    m_GateDrawing->Attach(NI_scatterGraph, NI_scatterPlot);
+}
+
 
 void ScatterGraph::Draw(cli::array<double>^ xValuesArray, cli::array<double>^ yValuesArray)
 {
