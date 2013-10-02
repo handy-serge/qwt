@@ -50,9 +50,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Form1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -77,6 +74,9 @@
     <ClInclude Include="Peak.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MainWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
@@ -84,9 +84,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resX">
-      <Filter>Resource Files</Filter>
-    </EmbeddedResource>
     <EmbeddedResource Include="AnalysisGraph.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
@@ -94,6 +91,9 @@
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLoadExperiment.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resX">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>

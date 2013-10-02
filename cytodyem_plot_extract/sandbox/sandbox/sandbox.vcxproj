@@ -134,7 +134,7 @@
     <ClInclude Include="AnalysisGraph.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Form1.h">
+    <ClInclude Include="MainWindow.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="FormLoadExperiment.h">
@@ -156,8 +156,8 @@
     <EmbeddedResource Include="AnalysisGraph.resx">
       <DependentUpon>AnalysisGraph.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resX">
-      <DependentUpon>Form1.h</DependentUpon>
+    <EmbeddedResource Include="MainWindow.resX">
+      <DependentUpon>MainWindow.h</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLoadExperiment.resx">

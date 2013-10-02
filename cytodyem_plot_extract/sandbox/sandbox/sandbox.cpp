@@ -1,7 +1,7 @@
 // sandbox.cpp : main project file.
 
 #include "stdafx.h"
-#include "Form1.h"
+#include "MainWindow.h"
 
 using namespace sandbox;
 
