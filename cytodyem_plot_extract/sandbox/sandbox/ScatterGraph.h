@@ -3,6 +3,8 @@
 #include "Result.h"
 #include <vector>
 
+#using "GateDrawing.dll"
+
 namespace sandbox {
 
 	using namespace System;
@@ -18,13 +20,7 @@ namespace sandbox {
 	public ref class ScatterGraph : public System::Windows::Forms::UserControl
 	{
 	public:
-		ScatterGraph(void)
-		{
-			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
-		}
+		ScatterGraph(void);
 
 	protected:
 		/// <summary>
@@ -140,5 +136,7 @@ namespace sandbox {
         void Draw(cli::array<double>^ xValuesArray, cli::array<double>^ yValuesArray);
 
     private:
+        GateDrawing::IGateDrawing ^m_GateDrawing;
+
     };
 }

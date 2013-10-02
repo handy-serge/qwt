@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 #include "ImportFile.h"
-#include "CFCSDataFloat.h"
+#include <FCSAPI/CFCSDataFloat.h>
 #include "Peak.h"
 
 using namespace System::Runtime::InteropServices;
