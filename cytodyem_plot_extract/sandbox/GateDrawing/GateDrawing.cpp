@@ -15,7 +15,7 @@ using namespace System::Drawing;
 namespace GateDrawing
 {;
 
-GateDrawing::GateDrawing()
+GateDrawing::RectangleMarker()
 {
     m_ButtonDownPlot = false;
     m_CurrentGate = gcnew PlotGateRect;

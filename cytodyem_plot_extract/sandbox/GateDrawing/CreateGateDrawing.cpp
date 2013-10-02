@@ -8,7 +8,7 @@ namespace GateDrawing
 
 IGateDrawing^ IGateDrawing::createGateDrawingForHistogram()
 {
-    return gcnew GateDrawingByXAxisRectangle();
+    return gcnew VerticalRectangleMarker();
 }
 
 }

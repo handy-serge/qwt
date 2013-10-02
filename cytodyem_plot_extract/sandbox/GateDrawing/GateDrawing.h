@@ -12,10 +12,10 @@ namespace GateDrawing
 ref class PlotGate;
 ref class PlotGateRect;
 
-ref class GateDrawing: public IGateDrawing
+ref class RectangleMarker: public IGateDrawing
 {
 public:
-    GateDrawing();
+    RectangleMarker();
 
     virtual event GateChangedHandler^ GateChanged;
 

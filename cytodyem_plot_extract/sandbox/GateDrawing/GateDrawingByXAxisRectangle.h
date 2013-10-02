@@ -8,10 +8,10 @@ namespace GateDrawing
 ref class PlotGate;
 ref class PlotGateRect;
 
-ref class GateDrawingByXAxisRectangle: public IGateDrawing
+ref class VerticalRectangleMarker: public IGateDrawing
 {
 public:
-    GateDrawingByXAxisRectangle();
+    VerticalRectangleMarker();
 
     virtual event GateChangedHandler^ GateChanged;
     virtual int Attach(
