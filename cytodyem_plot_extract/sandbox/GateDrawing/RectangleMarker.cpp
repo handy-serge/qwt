@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 
-#include "GateDrawing.h"
+#include "RectangleMarker.h"
 
 #include "PlotGate.h"
 
@@ -15,13 +15,13 @@ using namespace System::Drawing;
 namespace GateDrawing
 {;
 
-GateDrawing::RectangleMarker()
+RectangleMarker::RectangleMarker()
 {
     m_ButtonDownPlot = false;
     m_CurrentGate = gcnew PlotGateRect;
 }
 
-void GateDrawing::ButtonDown(
+void RectangleMarker::ButtonDown(
     System::Object^ sender,
     System::Windows::Forms::MouseEventArgs^ e)
 {
@@ -49,7 +49,7 @@ void GateDrawing::ButtonDown(
     }
 }
 
-void GateDrawing::ButtonUp(
+void RectangleMarker::ButtonUp(
     System::Object^ sender,
     System::Windows::Forms::MouseEventArgs^ e)
 {
@@ -61,7 +61,7 @@ void GateDrawing::ButtonUp(
 }
 
 
-void GateDrawing::MouseMove(
+void RectangleMarker::MouseMove(
     System::Object^ sender,
     System::Windows::Forms::MouseEventArgs^ e)
 {
@@ -111,7 +111,7 @@ void GateDrawing::MouseMove(
     }
 }
 
-void GateDrawing::BeforeDrawPlot(
+void RectangleMarker::BeforeDrawPlot(
     System::Object^ sender,
     NationalInstruments::UI::BeforeDrawXYPlotEventArgs^ e)
 {
@@ -133,29 +133,29 @@ void GateDrawing::BeforeDrawPlot(
 }
 
 
-int GateDrawing::Attach(
+int RectangleMarker::Attach(
     NationalInstruments::UI::WindowsForms::XYGraph^ Graph,
     NationalInstruments::UI::XYPlot^ Plot)
 {
     m_Graph = Graph;
     m_Plot = Plot;
 
-    Graph->BeforeDrawPlot += gcnew NationalInstruments::UI::BeforeDrawXYPlotEventHandler(this, &GateDrawing::BeforeDrawPlot);
+    Graph->BeforeDrawPlot += gcnew NationalInstruments::UI::BeforeDrawXYPlotEventHandler(this, &RectangleMarker::BeforeDrawPlot);
 
     //Graph->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &PlotGateHandler::scatterGraph1_MouseDown);
-    Graph->PlotAreaMouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &GateDrawing::ButtonDown);
+    Graph->PlotAreaMouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &RectangleMarker::ButtonDown);
 
-    Graph->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &GateDrawing::MouseMove);
+    Graph->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &RectangleMarker::MouseMove);
     // Graph->PlotAreaMouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &PlotGateHandler::scatterGraph1_PlotAreaMouseMove);
 
-    Graph->PlotAreaMouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &GateDrawing::ButtonUp);
-    Graph->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &GateDrawing::ButtonUp);
+    Graph->PlotAreaMouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &RectangleMarker::ButtonUp);
+    Graph->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &RectangleMarker::ButtonUp);
 
     return 0;
 }
 
 
-PlotGate^ GateDrawing::GetCurrentGate()
+PlotGate^ RectangleMarker::GetCurrentGate()
 {
     if (m_Gate.Width != 0 || m_Gate.Height != 0)
     {
@@ -197,13 +197,13 @@ using namespace System::Drawing;
 namespace GateDrawing
 {;
 
-GateDrawing::GateDrawing()
+RectangleMarker::RectangleMarker()
 {
     m_ButtonDownPlot = false;
     m_CurrentGate = gcnew PlotGateRect;
 }
 
-void GateDrawing::ButtonDown(
+void RectangleMarker::ButtonDown(
     System::Object^ sender,
     System::Windows::Forms::MouseEventArgs^ e)
 {
@@ -231,7 +231,7 @@ void GateDrawing::ButtonDown(
     }
 }
 
-void GateDrawing::ButtonUp(
+void RectangleMarker::ButtonUp(
     System::Object^ sender,
     System::Windows::Forms::MouseEventArgs^ e)
 {
@@ -242,7 +242,7 @@ void GateDrawing::ButtonUp(
 }
 
 
-void GateDrawing::MouseMove(
+void RectangleMarker::MouseMove(
     System::Object^ sender,
     System::Windows::Forms::MouseEventArgs^ e)
 {
@@ -292,7 +292,7 @@ void GateDrawing::MouseMove(
     }
 }
 
-void GateDrawing::BeforeDrawPlot(
+void RectangleMarker::BeforeDrawPlot(
     System::Object^ sender,
     NationalInstruments::UI::BeforeDrawXYPlotEventArgs^ e)
 {
@@ -314,29 +314,29 @@ void GateDrawing::BeforeDrawPlot(
 }
 
 
-int GateDrawing::Attach(
+int RectangleMarker::Attach(
     NationalInstruments::UI::WindowsForms::XYGraph^ Graph,
     NationalInstruments::UI::XYPlot^ Plot)
 {
     m_Graph = Graph;
     m_Plot = Plot;
 
-    Graph->BeforeDrawPlot += gcnew NationalInstruments::UI::BeforeDrawXYPlotEventHandler(this, &GateDrawing::BeforeDrawPlot);
+    Graph->BeforeDrawPlot += gcnew NationalInstruments::UI::BeforeDrawXYPlotEventHandler(this, &RectangleMarker::BeforeDrawPlot);
 
     //Graph->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &PlotGateHandler::scatterGraph1_MouseDown);
-    Graph->PlotAreaMouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &GateDrawing::ButtonDown);
+    Graph->PlotAreaMouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &RectangleMarker::ButtonDown);
 
-    Graph->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &GateDrawing::MouseMove);
+    Graph->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &RectangleMarker::MouseMove);
     // Graph->PlotAreaMouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &PlotGateHandler::scatterGraph1_PlotAreaMouseMove);
 
-    Graph->PlotAreaMouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &GateDrawing::ButtonUp);
-    Graph->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &GateDrawing::ButtonUp);
+    Graph->PlotAreaMouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &RectangleMarker::ButtonUp);
+    Graph->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &RectangleMarker::ButtonUp);
 
     return 0;
 }
 
 
-PlotGate^ GateDrawing::GetCurrentGate()
+PlotGate^ RectangleMarker::GetCurrentGate()
 {
     if (m_Gate.Width != 0 || m_Gate.Height != 0)
     {

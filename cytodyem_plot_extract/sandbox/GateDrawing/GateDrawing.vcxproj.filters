@@ -15,16 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GateDrawing.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GateDrawingByXAxisRectangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IGateDrawing.h">
@@ -33,11 +27,14 @@
     <ClInclude Include="PlotGate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RectangleMarker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VerticalRectangleMarker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GateDrawing.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AssemblyInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -47,10 +44,13 @@
     <ClCompile Include="CreateGateDrawing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GateDrawingByXAxisRectangle.cpp">
+    <ClCompile Include="PlotGate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PlotGate.cpp">
+    <ClCompile Include="RectangleMarker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VerticalRectangleMarker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

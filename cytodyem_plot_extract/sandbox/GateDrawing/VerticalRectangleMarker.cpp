@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 
-#include "GateDrawingByXAxisRectangle.h"
+#include "VerticalRectangleMarker.h"
 
 #include "PlotGate.h"
 
@@ -16,7 +16,7 @@ namespace GateDrawing
 {;
 
 
- VerticalRectangleMarker:: VerticalRectangleMarker()
+ VerticalRectangleMarker::VerticalRectangleMarker()
 {
     m_ButtonDownPlot = false;
     m_CurrentGate = gcnew PlotGateRect;

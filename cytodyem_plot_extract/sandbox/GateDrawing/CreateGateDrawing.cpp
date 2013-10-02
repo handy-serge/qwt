@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "IGateDrawing.h"
-#include "GateDrawing.h"
-#include "GateDrawingByXAxisRectangle.h"
+#include "RectangleMarker.h"
+#include "VerticalRectangleMarker.h"
 
 namespace GateDrawing
 {;
@@ -15,5 +15,5 @@ IGateDrawing^ IGateDrawing::createGateDrawingForHistogram()
 
 GateDrawing::IGateDrawing^ GateDrawing::IGateDrawing::createGateDrawingForScatterPlot()
 {
-    return gcnew GateDrawing();
+    return gcnew RectangleMarker();
 }
