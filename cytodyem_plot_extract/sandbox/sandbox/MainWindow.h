@@ -16,12 +16,12 @@ namespace sandbox {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Summary for Form1
+	/// Summary for MainWindow
 	/// </summary>
-	public ref class Form1 : public System::Windows::Forms::Form
+	public ref class MainWindow : public System::Windows::Forms::Form
 	{
 	public:
-		Form1(void)
+		MainWindow(void)
 		{
 			InitializeComponent();
 			//
@@ -44,7 +44,7 @@ namespace sandbox {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~Form1()
+		~MainWindow()
 		{
 			if (components)
 			{
@@ -104,7 +104,7 @@ namespace sandbox {
             this->loadButton->TabIndex = 0;
             this->loadButton->Text = L"Load";
             this->loadButton->UseVisualStyleBackColor = true;
-            this->loadButton->Click += gcnew System::EventHandler(this, &Form1::loadButton_Click);
+            this->loadButton->Click += gcnew System::EventHandler(this, &MainWindow::loadButton_Click);
             // 
             // tableLayoutPlotPanel
             // 
@@ -137,13 +137,13 @@ namespace sandbox {
             this->panelGraph2->Size = System::Drawing::Size(357, 250);
             this->panelGraph2->TabIndex = 1;
             // 
-            // Form1
+            // MainWindow
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
             this->ClientSize = System::Drawing::Size(756, 496);
             this->Controls->Add(this->tableLayoutPanel1);
-            this->Name = L"Form1";
+            this->Name = L"MainWindow";
             this->Text = L"Cytodyem Sandbox";
             this->tableLayoutPanel1->ResumeLayout(false);
             this->tableLayoutPlotPanel->ResumeLayout(false);
