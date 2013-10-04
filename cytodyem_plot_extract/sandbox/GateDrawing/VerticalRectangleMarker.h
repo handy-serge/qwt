@@ -1,11 +1,8 @@
 #pragma once
-
-#include "IGateDrawing.h"
+#using "Interfaces.dll"
 
 namespace GateDrawing
 {;
-
-ref class PlotGate;
 ref class PlotGateRect;
 
 ref class VerticalRectangleMarker: public IGateDrawing
@@ -18,7 +15,7 @@ public:
         NationalInstruments::UI::WindowsForms::XYGraph^ Graph,
         NationalInstruments::UI::XYPlot^ Plot);
 
-    virtual PlotGate^ GetCurrentGate();
+    virtual IPlotGate^ GetCurrentGate();
 
 
 private:

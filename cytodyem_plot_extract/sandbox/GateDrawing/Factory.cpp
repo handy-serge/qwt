@@ -1,19 +1,19 @@
 #include "stdafx.h"
-#include "IGateDrawing.h"
+#include "Factory.h"
 #include "RectangleMarker.h"
 #include "VerticalRectangleMarker.h"
 
 namespace GateDrawing
 {;
 
-IGateDrawing^ IGateDrawing::createGateDrawingForHistogram()
+IGateDrawing^ Factory::createGateDrawingForHistogram()
 {
     return gcnew VerticalRectangleMarker();
 }
 
 }
 
-GateDrawing::IGateDrawing^ GateDrawing::IGateDrawing::createGateDrawingForScatterPlot()
+GateDrawing::IGateDrawing^ GateDrawing::Factory::createGateDrawingForScatterPlot()
 {
     return gcnew RectangleMarker();
 }

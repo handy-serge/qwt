@@ -155,7 +155,7 @@ int RectangleMarker::Attach(
 }
 
 
-PlotGate^ RectangleMarker::GetCurrentGate()
+IPlotGate^ RectangleMarker::GetCurrentGate()
 {
     if (m_Gate.Width != 0 || m_Gate.Height != 0)
     {

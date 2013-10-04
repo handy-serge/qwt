@@ -13,6 +13,8 @@ int main(array<System::String ^> ^args)
 	Application::SetCompatibleTextRenderingDefault(false); 
 
 	// Create the main window and run it
-	Application::Run(gcnew MainWindow());
+    System::Windows::Forms::Form^ mainWindow = gcnew MainWindow();
+	Application::Run(mainWindow);
+
 	return 0;
 }

@@ -3,7 +3,7 @@
 #include "Result.h"
 #include <vector>
 
-#using "GateDrawing.dll"
+#using "Interfaces.dll"
 
 namespace sandbox {
 

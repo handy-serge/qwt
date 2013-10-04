@@ -3,15 +3,16 @@
 */
 #pragma once
 
+#using "Interfaces.dll"
+
 namespace GateDrawing
 {;
-
-public ref class PlotGate
+public ref class PlotGate: public IPlotGate
 {
 public:
    PlotGate();
 
-   virtual bool IsPointInside(double X, double Y) { return true; }
+   virtual bool IsPointInside(double X, double Y);
 };
 
 public ref class PlotGateRect : PlotGate

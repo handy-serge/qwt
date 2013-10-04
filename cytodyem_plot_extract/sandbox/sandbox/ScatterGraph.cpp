@@ -1,6 +1,8 @@
 #include "StdAfx.h"
 #include "ScatterGraph.h"
 
+#using "GateDrawing.dll"
+
 
 namespace sandbox 
 {;
@@ -9,7 +11,7 @@ ScatterGraph::ScatterGraph(void)
 {
     InitializeComponent();
 
-    m_GateDrawing = GateDrawing::IGateDrawing::createGateDrawingForScatterPlot();
+    m_GateDrawing = GateDrawing::Factory::createGateDrawingForScatterPlot();
     m_GateDrawing->Attach(NI_scatterGraph, NI_scatterPlot);
 }
 

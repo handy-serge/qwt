@@ -58,6 +58,9 @@ namespace sandbox {
     private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPlotPanel;
     private: System::Windows::Forms::Panel^  panelGraph1;
     private: System::Windows::Forms::Panel^  panelGraph2;
+    private: CustomControls::PlotMarkerTypeSelector^  plotMarkerTypeSelector1;
+    private: System::Windows::Forms::FlowLayoutPanel^  flowLayoutPanel1;
+
 
 	private:
 		/// <summary>
@@ -77,8 +80,11 @@ namespace sandbox {
             this->tableLayoutPlotPanel = (gcnew System::Windows::Forms::TableLayoutPanel());
             this->panelGraph1 = (gcnew System::Windows::Forms::Panel());
             this->panelGraph2 = (gcnew System::Windows::Forms::Panel());
+            this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
+            this->plotMarkerTypeSelector1 = (gcnew CustomControls::PlotMarkerTypeSelector());
             this->tableLayoutPanel1->SuspendLayout();
             this->tableLayoutPlotPanel->SuspendLayout();
+            this->flowLayoutPanel1->SuspendLayout();
             this->SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -86,8 +92,8 @@ namespace sandbox {
             this->tableLayoutPanel1->ColumnCount = 1;
             this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
                 50)));
-            this->tableLayoutPanel1->Controls->Add(this->loadButton, 0, 0);
             this->tableLayoutPanel1->Controls->Add(this->tableLayoutPlotPanel, 0, 1);
+            this->tableLayoutPanel1->Controls->Add(this->flowLayoutPanel1, 0, 0);
             this->tableLayoutPanel1->Location = System::Drawing::Point(12, 3);
             this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
             this->tableLayoutPanel1->RowCount = 2;
@@ -120,6 +126,8 @@ namespace sandbox {
             this->tableLayoutPlotPanel->RowCount = 1;
             this->tableLayoutPlotPanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 
                 50)));
+            this->tableLayoutPlotPanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 
+                443)));
             this->tableLayoutPlotPanel->Size = System::Drawing::Size(726, 443);
             this->tableLayoutPlotPanel->TabIndex = 1;
             // 
@@ -137,6 +145,28 @@ namespace sandbox {
             this->panelGraph2->Size = System::Drawing::Size(357, 250);
             this->panelGraph2->TabIndex = 1;
             // 
+            // flowLayoutPanel1
+            // 
+            this->flowLayoutPanel1->Controls->Add(this->loadButton);
+            this->flowLayoutPanel1->Controls->Add(this->plotMarkerTypeSelector1);
+            this->flowLayoutPanel1->Dock = System::Windows::Forms::DockStyle::Fill;
+            this->flowLayoutPanel1->Location = System::Drawing::Point(3, 3);
+            this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
+            this->flowLayoutPanel1->Size = System::Drawing::Size(726, 29);
+            this->flowLayoutPanel1->TabIndex = 2;
+            // 
+            // plotMarkerTypeSelector1
+            // 
+            this->plotMarkerTypeSelector1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom) 
+                | System::Windows::Forms::AnchorStyles::Left) 
+                | System::Windows::Forms::AnchorStyles::Right));
+            this->plotMarkerTypeSelector1->AutoSize = true;
+            this->plotMarkerTypeSelector1->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+            this->plotMarkerTypeSelector1->Location = System::Drawing::Point(84, 3);
+            this->plotMarkerTypeSelector1->Name = L"plotMarkerTypeSelector1";
+            this->plotMarkerTypeSelector1->Size = System::Drawing::Size(79, 27);
+            this->plotMarkerTypeSelector1->TabIndex = 2;
+            // 
             // MainWindow
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -147,6 +177,8 @@ namespace sandbox {
             this->Text = L"Cytodyem Sandbox";
             this->tableLayoutPanel1->ResumeLayout(false);
             this->tableLayoutPlotPanel->ResumeLayout(false);
+            this->flowLayoutPanel1->ResumeLayout(false);
+            this->flowLayoutPanel1->PerformLayout();
             this->ResumeLayout(false);
 
         }

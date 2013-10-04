@@ -114,6 +114,7 @@
     <LicxCompiler Include="licenses.licx">
       <FileType>Document</FileType>
     </LicxCompiler>
+    <None Include="ClassDiagram.cd" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -168,8 +169,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Controls\Controls.vcxproj">
+      <Project>{04357047-c47d-4faa-b82a-a17208f0ec54}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\FCSAPI\FCSAPI.vcxproj">
       <Project>{56f94176-e720-4490-9f16-8ffda0f0c00a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\GateDrawing\GateDrawing.vcxproj">
+      <Project>{f51e6c27-2892-4597-ae94-1dcafd538d20}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Interfaces\Interfaces.vcxproj">
+      <Project>{9a3b0124-ae6b-41a9-b833-49d8d938f11b}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

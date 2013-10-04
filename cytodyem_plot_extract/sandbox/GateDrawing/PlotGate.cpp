@@ -12,6 +12,11 @@ PlotGate::PlotGate()
 
 }
 
+bool PlotGate::IsPointInside( double X, double Y )
+{
+    return true;
+}
+
 PlotGateRect::PlotGateRect()
 {
 

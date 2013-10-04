@@ -23,4 +23,7 @@ cytodyem_plot_extract/sandbox/sandbox/Debug/*
 cytodyem_plot_extract/sandbox/GateDrawing/Debug/*
 cytodyem_plot_extract/sandbox/GateDrawing/Release/*
 cytodyem_plot_extract/sandbox/ipch/*
-cytodyem_plot_extract/sandbox/CustomControls/Debug/*
+cytodyem_plot_extract/sandbox/Interfaces/Debug/*
+cytodyem_plot_extract/sandbox/Controls/Debug/*
+cytodyem_plot_extract/sandbox/Controls/Release/*
+cytodyem_plot_extract/sandbox/Interfaces/Release/*

@@ -171,7 +171,7 @@ int  VerticalRectangleMarker::Attach(
 }
 
 
-PlotGate^  VerticalRectangleMarker::GetCurrentGate()
+IPlotGate^  VerticalRectangleMarker::GetCurrentGate()
 {
     if (m_Gate.Width != 0 || m_Gate.Height != 0)
     {
