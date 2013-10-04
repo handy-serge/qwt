@@ -4,9 +4,7 @@
 CustomControls::PlotMarkerTypeSelector::PlotMarkerTypeSelector( void )
 {
     InitializeComponent();
-    //
-    //TODO: Add the constructor code here
-    //
+    m_comboBox->SelectedIndex = 0;
 }
 
 CustomControls::PlotMarkerTypeSelector::~PlotMarkerTypeSelector()

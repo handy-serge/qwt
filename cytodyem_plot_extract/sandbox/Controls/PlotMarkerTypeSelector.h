@@ -50,11 +50,12 @@ namespace CustomControls {
             // 
             // m_comboBox
             // 
+            this->m_comboBox->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
             this->m_comboBox->FormattingEnabled = true;
-            this->m_comboBox->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"Vertical", L"Rectangle", L"Polygon"});
+            this->m_comboBox->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"R", L"P", L"H"});
             this->m_comboBox->Location = System::Drawing::Point(6, 3);
             this->m_comboBox->Name = L"m_comboBox";
-            this->m_comboBox->Size = System::Drawing::Size(70, 21);
+            this->m_comboBox->Size = System::Drawing::Size(36, 21);
             this->m_comboBox->TabIndex = 0;
             this->m_comboBox->SelectedValueChanged += gcnew System::EventHandler(this, &PlotMarkerTypeSelector::OnComboBoxValueChanged);
             // 
@@ -65,7 +66,7 @@ namespace CustomControls {
             this->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
             this->Controls->Add(this->m_comboBox);
             this->Name = L"PlotMarkerTypeSelector";
-            this->Size = System::Drawing::Size(79, 31);
+            this->Size = System::Drawing::Size(47, 29);
             this->ResumeLayout(false);
 
         }
