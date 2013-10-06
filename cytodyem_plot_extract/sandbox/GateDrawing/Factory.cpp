@@ -3,17 +3,16 @@
 #include "RectangleMarker.h"
 #include "VerticalRectangleMarker.h"
 
-namespace GateDrawing
-{;
 
-IGateDrawing^ Factory::createGateDrawingForHistogram()
+GateDrawing::IGateDrawing^ GateDrawing::Factory::CreateGateDrawing( GateDrawing::PlotMarkerType markerType )
 {
-    return gcnew VerticalRectangleMarker();
-}
-
-}
-
-GateDrawing::IGateDrawing^ GateDrawing::Factory::createGateDrawingForScatterPlot()
-{
-    return gcnew RectangleMarker();
+    switch (markerType)
+    {
+    case PlotMarkerType::Polygon:
+    case PlotMarkerType::Rectangle:
+        return gcnew RectangleMarker();
+    case PlotMarkerType::Stripe:
+        return gcnew VerticalRectangleMarker();
+    }
+    return nullptr;
 }

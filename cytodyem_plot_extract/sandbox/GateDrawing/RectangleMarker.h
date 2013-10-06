@@ -13,12 +13,15 @@ ref class RectangleMarker: public IGateDrawing
 {
 public:
     RectangleMarker();
+    ~RectangleMarker();
+
 
     virtual event GateChangedHandler^ GateChanged;
 
-    virtual int Attach(
+    virtual void Attach(
         NationalInstruments::UI::WindowsForms::XYGraph^ Graph,
         NationalInstruments::UI::XYPlot^ Plot);
+    virtual void Detach();
 
     virtual IPlotGate^ GetCurrentGate();
 

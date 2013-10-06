@@ -7,7 +7,6 @@ namespace GateDrawing
     public ref class Factory
     {
     public:
-        static IGateDrawing^ createGateDrawingForHistogram();
-        static IGateDrawing^ createGateDrawingForScatterPlot();
+        static IGateDrawing^ CreateGateDrawing(GateDrawing::PlotMarkerType markerType);
     };
 }

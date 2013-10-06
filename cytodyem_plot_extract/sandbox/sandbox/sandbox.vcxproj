@@ -123,6 +123,7 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="FormLoadExperiment.cpp" />
     <ClCompile Include="ImportFile.cpp" />
+    <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Peak.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="sandbox.cpp" />

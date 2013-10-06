@@ -10,9 +10,6 @@ namespace sandbox
 ScatterGraph::ScatterGraph(void)  
 {
     InitializeComponent();
-
-    m_GateDrawing = GateDrawing::Factory::createGateDrawingForScatterPlot();
-    m_GateDrawing->Attach(NI_scatterGraph, NI_scatterPlot);
 }
 
 
@@ -20,6 +17,15 @@ void ScatterGraph::Draw(cli::array<double>^ xValuesArray, cli::array<double>^ yV
 {
     NI_scatterPlot->ClearData();
     NI_scatterPlot->PlotXY(xValuesArray, yValuesArray);
+}
+
+void ScatterGraph::ChangeGateDrawing( GateDrawing::IGateDrawing^ gateDrawing )
+{
+//    m_GateDrawing = GateDrawing::Factory::createGateDrawingForScatterPlot();
+    delete m_GateDrawing;
+
+    m_GateDrawing = gateDrawing;
+    m_GateDrawing->Attach(NI_scatterGraph, NI_scatterPlot);
 }
 
 }

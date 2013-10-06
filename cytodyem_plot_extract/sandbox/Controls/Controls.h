@@ -4,7 +4,7 @@
 
 using namespace System;
 
-namespace Controls {
+namespace CustomControls {
 
 	public ref class Class1
 	{

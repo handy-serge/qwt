@@ -2,6 +2,7 @@
 #include "AnalysisGraph.h"
 #include <cliext/vector>
 
+#using "GateDrawing.dll"
 
 namespace sandbox {
 
@@ -35,6 +36,12 @@ void AnalysisGraph::ReDraw(std::vector<Result>& results)
     cli::array<double>^ yValuesArray =  yValues.to_array();
 
     m_ScatterGraph->Draw(xValuesArray, yValuesArray);
+}
+
+void AnalysisGraph::SetMarkerType(GateDrawing::PlotMarkerType markerType )
+{
+    GateDrawing::IGateDrawing^  gateDrawing = GateDrawing::Factory::CreateGateDrawing(markerType);
+    m_ScatterGraph->ChangeGateDrawing(gateDrawing);
 }
 
 }

@@ -10,8 +10,6 @@ namespace GateDrawing {
 public interface class IPlotGate
 {
     bool IsPointInside(double X, double Y);
-
-//    static IPlotGate(){};
 };
 
 public delegate void GateChangedHandler();
@@ -19,12 +17,20 @@ public delegate void GateChangedHandler();
 public interface struct IGateDrawing
 {
     event GateChangedHandler^ GateChanged;
-    int Attach(
+    void Attach(
         NationalInstruments::UI::WindowsForms::XYGraph^ Graph,
         NationalInstruments::UI::XYPlot^ Plot);
-    IPlotGate^ GetCurrentGate();
 
-//    static IGateDrawing(){};
+    void Detach();
+
+    IPlotGate^ GetCurrentGate();
+};
+
+public enum class PlotMarkerType
+{
+    Rectangle
+    , Stripe
+    , Polygon
 };
 
 }

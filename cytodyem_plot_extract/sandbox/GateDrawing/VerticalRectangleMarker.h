@@ -4,16 +4,18 @@
 namespace GateDrawing
 {;
 ref class PlotGateRect;
-
 ref class VerticalRectangleMarker: public IGateDrawing
 {
 public:
     VerticalRectangleMarker();
+    ~VerticalRectangleMarker();
 
     virtual event GateChangedHandler^ GateChanged;
-    virtual int Attach(
+    virtual void Attach(
         NationalInstruments::UI::WindowsForms::XYGraph^ Graph,
         NationalInstruments::UI::XYPlot^ Plot);
+
+    virtual void Detach();
 
     virtual IPlotGate^ GetCurrentGate();
 
