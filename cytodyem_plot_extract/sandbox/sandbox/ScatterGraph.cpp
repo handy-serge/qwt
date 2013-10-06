@@ -21,7 +21,6 @@ void ScatterGraph::Draw(cli::array<double>^ xValuesArray, cli::array<double>^ yV
 
 void ScatterGraph::ChangeGateDrawing( GateDrawing::IGateDrawing^ gateDrawing )
 {
-//    m_GateDrawing = GateDrawing::Factory::createGateDrawingForScatterPlot();
     delete m_GateDrawing;
 
     m_GateDrawing = gateDrawing;

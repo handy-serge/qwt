@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Factory.h" />
+    <ClInclude Include="PolygonMarker.h" />
     <ClInclude Include="RectangleMarker.h" />
     <ClInclude Include="VerticalRectangleMarker.h" />
     <ClInclude Include="PlotGate.h" />
@@ -95,6 +96,7 @@
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Factory.cpp" />
+    <ClCompile Include="PolygonMarker.cpp" />
     <ClCompile Include="RectangleMarker.cpp" />
     <ClCompile Include="VerticalRectangleMarker.cpp" />
     <ClCompile Include="PlotGate.cpp" />
