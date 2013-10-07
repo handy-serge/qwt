@@ -1,7 +1,7 @@
 // sandbox.cpp : main project file.
 
 #include "stdafx.h"
-#include "Form1.h"
+#include "MainWindow.h"
 
 using namespace sandbox;
 
@@ -13,6 +13,8 @@ int main(array<System::String ^> ^args)
 	Application::SetCompatibleTextRenderingDefault(false); 
 
 	// Create the main window and run it
-	Application::Run(gcnew Form1());
+    System::Windows::Forms::Form^ mainWindow = gcnew MainWindow();
+	Application::Run(mainWindow);
+
 	return 0;
 }

@@ -1,29 +1,29 @@
 #pragma once
 
-#include "IGateDrawing.h"
-
+#using "Interfaces.dll"
 #using "System.Windows.Forms.dll"
 #using "System.Drawing.dll"
 
+#include "PlotGate.h"
 
 namespace GateDrawing
-{;
+{
 
-ref class PlotGate;
-ref class PlotGateRect;
-
-ref class GateDrawing: public IGateDrawing
+ref class RectangleMarker: public IGateDrawing
 {
 public:
-    GateDrawing();
+    RectangleMarker();
+    ~RectangleMarker();
+
 
     virtual event GateChangedHandler^ GateChanged;
 
-    virtual int Attach(
+    virtual void Attach(
         NationalInstruments::UI::WindowsForms::XYGraph^ Graph,
         NationalInstruments::UI::XYPlot^ Plot);
+    virtual void Detach();
 
-    virtual PlotGate^ GetCurrentGate();
+    virtual IPlotGate^ GetCurrentGate();
 
 
 private:

@@ -1,11 +1,19 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C++ Express 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sandbox", "sandbox\sandbox.vcxproj", "{9B24085E-6935-4C5D-8824-24874CE3CB98}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FCSAPI", "FCSAPI\FCSAPI.vcxproj", "{56F94176-E720-4490-9F16-8FFDA0F0C00A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GateDrawing", "GateDrawing\GateDrawing.vcxproj", "{F51E6C27-2892-4597-AE94-1DCAFD538D20}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{31125197-DC52-4E73-9271-FF0AF3C5A5A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{CC235C28-D124-4BE5-AC7E-A9B67A2BF3FC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Controls", "Controls\Controls.vcxproj", "{04357047-C47D-4FAA-B82A-A17208F0EC54}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Interfaces", "Interfaces\Interfaces.vcxproj", "{9A3B0124-AE6B-41A9-B833-49D8D938F11B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,8 +33,23 @@ Global
 		{F51E6C27-2892-4597-AE94-1DCAFD538D20}.Debug|Win32.Build.0 = Debug|Win32
 		{F51E6C27-2892-4597-AE94-1DCAFD538D20}.Release|Win32.ActiveCfg = Release|Win32
 		{F51E6C27-2892-4597-AE94-1DCAFD538D20}.Release|Win32.Build.0 = Release|Win32
+		{04357047-C47D-4FAA-B82A-A17208F0EC54}.Debug|Win32.ActiveCfg = Debug|Win32
+		{04357047-C47D-4FAA-B82A-A17208F0EC54}.Debug|Win32.Build.0 = Debug|Win32
+		{04357047-C47D-4FAA-B82A-A17208F0EC54}.Release|Win32.ActiveCfg = Release|Win32
+		{04357047-C47D-4FAA-B82A-A17208F0EC54}.Release|Win32.Build.0 = Release|Win32
+		{9A3B0124-AE6B-41A9-B833-49D8D938F11B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9A3B0124-AE6B-41A9-B833-49D8D938F11B}.Debug|Win32.Build.0 = Debug|Win32
+		{9A3B0124-AE6B-41A9-B833-49D8D938F11B}.Release|Win32.ActiveCfg = Release|Win32
+		{9A3B0124-AE6B-41A9-B833-49D8D938F11B}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9B24085E-6935-4C5D-8824-24874CE3CB98} = {31125197-DC52-4E73-9271-FF0AF3C5A5A8}
+		{F51E6C27-2892-4597-AE94-1DCAFD538D20} = {CC235C28-D124-4BE5-AC7E-A9B67A2BF3FC}
+		{56F94176-E720-4490-9F16-8FFDA0F0C00A} = {CC235C28-D124-4BE5-AC7E-A9B67A2BF3FC}
+		{04357047-C47D-4FAA-B82A-A17208F0EC54} = {CC235C28-D124-4BE5-AC7E-A9B67A2BF3FC}
+		{9A3B0124-AE6B-41A9-B833-49D8D938F11B} = {CC235C28-D124-4BE5-AC7E-A9B67A2BF3FC}
 	EndGlobalSection
 EndGlobal

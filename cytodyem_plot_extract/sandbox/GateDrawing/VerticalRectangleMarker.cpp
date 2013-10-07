@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 
-#include "GateDrawingByXAxisRectangle.h"
+#include "VerticalRectangleMarker.h"
 
 #include "PlotGate.h"
 
@@ -16,13 +16,13 @@ namespace GateDrawing
 {;
 
 
- GateDrawingByXAxisRectangle:: GateDrawingByXAxisRectangle()
+ VerticalRectangleMarker::VerticalRectangleMarker()
 {
     m_ButtonDownPlot = false;
     m_CurrentGate = gcnew PlotGateRect;
 }
 
-void  GateDrawingByXAxisRectangle::ButtonDown(
+void  VerticalRectangleMarker::ButtonDown(
     System::Object^ sender,
     System::Windows::Forms::MouseEventArgs^ e)
 {
@@ -50,7 +50,7 @@ void  GateDrawingByXAxisRectangle::ButtonDown(
     }
 }
 
-void  GateDrawingByXAxisRectangle::ButtonUp(
+void  VerticalRectangleMarker::ButtonUp(
     System::Object^ sender,
     System::Windows::Forms::MouseEventArgs^ e)
 {
@@ -62,7 +62,7 @@ void  GateDrawingByXAxisRectangle::ButtonUp(
 }
 
 
-void  GateDrawingByXAxisRectangle::MouseMove(
+void  VerticalRectangleMarker::MouseMove(
     System::Object^ sender,
     System::Windows::Forms::MouseEventArgs^ e)
 {
@@ -123,7 +123,7 @@ void  GateDrawingByXAxisRectangle::MouseMove(
     }
 }
 
-void  GateDrawingByXAxisRectangle::BeforeDrawPlot(
+void  VerticalRectangleMarker::BeforeDrawPlot(
     System::Object^ sender,
     NationalInstruments::UI::BeforeDrawXYPlotEventArgs^ e)
 {
@@ -149,29 +149,27 @@ void  GateDrawingByXAxisRectangle::BeforeDrawPlot(
 }
 
 
-int  GateDrawingByXAxisRectangle::Attach(
+void  VerticalRectangleMarker::Attach(
     NationalInstruments::UI::WindowsForms::XYGraph^ Graph,
     NationalInstruments::UI::XYPlot^ Plot)
 {
     m_Graph = Graph;
     m_Plot = Plot;
 
-    Graph->BeforeDrawPlot += gcnew NationalInstruments::UI::BeforeDrawXYPlotEventHandler(this, & GateDrawingByXAxisRectangle::BeforeDrawPlot);
+    Graph->BeforeDrawPlot += gcnew NationalInstruments::UI::BeforeDrawXYPlotEventHandler(this, & VerticalRectangleMarker::BeforeDrawPlot);
 
     //Graph->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &PlotGateHandler::scatterGraph1_MouseDown);
-    Graph->PlotAreaMouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, & GateDrawingByXAxisRectangle::ButtonDown);
+    Graph->PlotAreaMouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, & VerticalRectangleMarker::ButtonDown);
 
-    Graph->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, & GateDrawingByXAxisRectangle::MouseMove);
+    Graph->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, & VerticalRectangleMarker::MouseMove);
     // Graph->PlotAreaMouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &PlotGateHandler::scatterGraph1_PlotAreaMouseMove);
 
-    Graph->PlotAreaMouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, & GateDrawingByXAxisRectangle::ButtonUp);
-    Graph->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, & GateDrawingByXAxisRectangle::ButtonUp);
-
-    return 0;
+    Graph->PlotAreaMouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, & VerticalRectangleMarker::ButtonUp);
+    Graph->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, & VerticalRectangleMarker::ButtonUp);
 }
 
 
-PlotGate^  GateDrawingByXAxisRectangle::GetCurrentGate()
+IPlotGate^  VerticalRectangleMarker::GetCurrentGate()
 {
     if (m_Gate.Width != 0 || m_Gate.Height != 0)
     {
@@ -186,6 +184,30 @@ PlotGate^  GateDrawingByXAxisRectangle::GetCurrentGate()
             std::numeric_limits<float>::max());
     }
     return m_CurrentGate;
+}
+
+VerticalRectangleMarker::~VerticalRectangleMarker()
+{
+    Detach();
+}
+
+void VerticalRectangleMarker::Detach()
+{
+    if (m_Graph)
+    {
+        m_Graph->BeforeDrawPlot -= gcnew NationalInstruments::UI::BeforeDrawXYPlotEventHandler(this, &VerticalRectangleMarker::BeforeDrawPlot);
+
+        //Graph->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &PlotGateHandler::scatterGraph1_MouseDown);
+        m_Graph->PlotAreaMouseDown -= gcnew System::Windows::Forms::MouseEventHandler(this, &VerticalRectangleMarker::ButtonDown);
+
+        m_Graph->MouseMove -= gcnew System::Windows::Forms::MouseEventHandler(this, &VerticalRectangleMarker::MouseMove);
+        // Graph->PlotAreaMouseMove -= gcnew System::Windows::Forms::MouseEventHandler(this, &PlotGateHandler::scatterGraph1_PlotAreaMouseMove);
+
+        m_Graph->PlotAreaMouseUp -= gcnew System::Windows::Forms::MouseEventHandler(this, &VerticalRectangleMarker::ButtonUp);
+        m_Graph->MouseUp -= gcnew System::Windows::Forms::MouseEventHandler(this, &VerticalRectangleMarker::ButtonUp);
+    }
+    m_Graph = nullptr;
+    m_Plot = nullptr;
 }
 
 

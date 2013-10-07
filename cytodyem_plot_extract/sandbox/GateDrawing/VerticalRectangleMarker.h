@@ -1,24 +1,23 @@
 #pragma once
-
-#include "IGateDrawing.h"
+#using "Interfaces.dll"
 
 namespace GateDrawing
 {;
-
-ref class PlotGate;
 ref class PlotGateRect;
-
-ref class GateDrawingByXAxisRectangle: public IGateDrawing
+ref class VerticalRectangleMarker: public IGateDrawing
 {
 public:
-    GateDrawingByXAxisRectangle();
+    VerticalRectangleMarker();
+    ~VerticalRectangleMarker();
 
     virtual event GateChangedHandler^ GateChanged;
-    virtual int Attach(
+    virtual void Attach(
         NationalInstruments::UI::WindowsForms::XYGraph^ Graph,
         NationalInstruments::UI::XYPlot^ Plot);
 
-    virtual PlotGate^ GetCurrentGate();
+    virtual void Detach();
+
+    virtual IPlotGate^ GetCurrentGate();
 
 
 private:

@@ -11,10 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F51E6C27-2892-4597-AE94-1DCAFD538D20}</ProjectGuid>
+    <ProjectGuid>{04357047-C47D-4FAA-B82A-A17208F0EC54}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
-    <RootNamespace>GateDrawing</RootNamespace>
+    <RootNamespace>Controls</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -27,7 +27,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <CLRSupport>Pure</CLRSupport>
+    <CLRSupport>true</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
@@ -53,6 +53,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$(OutDir)</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
@@ -66,6 +67,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$(OutDir)</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
@@ -75,9 +77,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Reference Include="NationalInstruments.Common" />
-    <Reference Include="NationalInstruments.UI" />
-    <Reference Include="NationalInstruments.UI.WindowsForms" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -85,21 +84,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Factory.h" />
-    <ClInclude Include="PolygonMarker.h" />
-    <ClInclude Include="RectangleMarker.h" />
-    <ClInclude Include="VerticalRectangleMarker.h" />
-    <ClInclude Include="PlotGate.h" />
+    <ClInclude Include="Controls.h" />
+    <ClInclude Include="MarkerTypeChangedEventArgs.h" />
+    <ClInclude Include="PlotMarkerTypeSelector.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="Factory.cpp" />
-    <ClCompile Include="PolygonMarker.cpp" />
-    <ClCompile Include="RectangleMarker.cpp" />
-    <ClCompile Include="VerticalRectangleMarker.cpp" />
-    <ClCompile Include="PlotGate.cpp" />
+    <ClCompile Include="Controls.cpp" />
+    <ClCompile Include="PlotMarkerTypeSelector.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -107,9 +103,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico" />
+    <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PlotMarkerTypeSelector.resx">
+      <DependentUpon>PlotMarkerTypeSelector.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Interfaces\Interfaces.vcxproj">
