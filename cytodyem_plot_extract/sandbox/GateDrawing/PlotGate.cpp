@@ -9,7 +9,6 @@ namespace GateDrawing
 
 PlotGate::PlotGate()
 {
-
 }
 
 bool PlotGate::IsPointInside( double X, double Y )
@@ -19,7 +18,7 @@ bool PlotGate::IsPointInside( double X, double Y )
 
 PlotGateRect::PlotGateRect()
 {
-
+	
 }
 
 bool PlotGateRect::IsPointInside(double X, double Y)

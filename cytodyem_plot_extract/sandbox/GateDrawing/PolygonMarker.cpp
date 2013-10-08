@@ -20,6 +20,7 @@ PolygonMarker::PolygonMarker()
 {
     m_points = gcnew List<System::Drawing::PointF>();
     m_isDrawing = false;
+	m_completeDrawing = false;
 }
 
 // If number is smaller than minimum or bigger than maximum, it is set to a minimum or maximum,
@@ -83,20 +84,30 @@ void PolygonMarker::HandleMouseClick(
 {
     System::Windows::Forms::Keys k = System::Windows::Forms::Control::ModifierKeys;
     bool ModifierKeyDown = (k != System::Windows::Forms::Keys::None);
-    if (!ModifierKeyDown)
+    if (!ModifierKeyDown && !m_completeDrawing)
     {
-        if (!m_isDrawing)
-        {
-            // Remove all points.
-            m_points->Clear();
-        }
-        m_isDrawing = true;
-        System::Drawing::Point const screenPoint(e->X, e->Y);
-        System::Drawing::PointF const dataPoint = FromScreenToData(screenPoint, m_Graph, m_Plot);
+		System::Drawing::Point const screenPoint(e->X, e->Y);
+		System::Drawing::PointF const dataPoint = FromScreenToData(screenPoint, m_Graph, m_Plot);
+		m_Graph->Invalidate();
 
-        m_points->Add(dataPoint);
-        m_Graph->Invalidate();
+		m_points->Add(dataPoint);
+		
+
+        m_isDrawing = true;
+        
     }
+}
+
+void PolygonMarker::eraseMarker()
+{
+    if (!m_isDrawing)
+    {
+        // Remove all points.
+        m_points->Clear();
+		m_Graph->Invalidate();
+    }
+
+    m_completeDrawing = false;
 }
 
 void PolygonMarker::HandleDoubleClick(
@@ -104,6 +115,7 @@ void PolygonMarker::HandleDoubleClick(
     System::Windows::Forms::MouseEventArgs^ e)
 {
     m_isDrawing = false;
+	m_completeDrawing = true;
 }
 
 
@@ -111,7 +123,7 @@ void PolygonMarker::HandleMouseMove(
     System::Object^ sender,
     System::Windows::Forms::MouseEventArgs^ e)
 {
-    if (!m_isDrawing)
+    if (!m_isDrawing || m_completeDrawing)
     {
         return;
     }
@@ -121,7 +133,7 @@ void PolygonMarker::HandleMouseMove(
 
     if (m_points->Count)
     {
-        m_points->RemoveAt(m_points->Count-1);
+        m_points->RemoveAt(m_points->Count - 1);
     }
     m_points->Add(dataPoint);
     m_Graph->Invalidate();
@@ -178,6 +190,9 @@ void PolygonMarker::Detach()
 {
     if (m_Graph)
     {
+		// Delete current gate
+		eraseMarker();
+
         m_Graph->BeforeDrawPlot -= gcnew NationalInstruments::UI::BeforeDrawXYPlotEventHandler(this, &PolygonMarker::BeforeDrawPlot);
 
         m_Graph->MouseClick -= gcnew System::Windows::Forms::MouseEventHandler(this, &PolygonMarker::HandleMouseClick);

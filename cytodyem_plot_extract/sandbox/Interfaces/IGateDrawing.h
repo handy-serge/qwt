@@ -23,6 +23,7 @@ public interface struct IGateDrawing
 
     void Detach();
 
+	void eraseMarker();
     IPlotGate^ GetCurrentGate();
 };
 

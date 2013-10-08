@@ -15,13 +15,15 @@ namespace GateDrawing
         PolygonMarker();
         ~PolygonMarker();
 
-
         virtual event GateChangedHandler^ GateChanged;
 
         virtual void Attach(
             NationalInstruments::UI::WindowsForms::XYGraph^ Graph,
             NationalInstruments::UI::XYPlot^ Plot);
+
         virtual void Detach();
+
+        virtual void eraseMarker();
 
         virtual IPlotGate^ GetCurrentGate();
 
@@ -51,5 +53,6 @@ namespace GateDrawing
         System::Collections::Generic::List<System::Drawing::PointF> ^m_points;
 
         bool m_isDrawing;
+		bool m_completeDrawing;
     };
 };

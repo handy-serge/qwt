@@ -19,6 +19,7 @@ RectangleMarker::RectangleMarker()
 {
     m_ButtonDownPlot = false;
     m_CurrentGate = gcnew PlotGateRect;
+	m_completeDrawing = false;
 }
 
 void RectangleMarker::ButtonDown(
@@ -27,26 +28,31 @@ void RectangleMarker::ButtonDown(
 {
     System::Windows::Forms::Keys k = System::Windows::Forms::Control::ModifierKeys;
     bool ModifierKeyDown = (k != System::Windows::Forms::Keys::None);
-    if (!ModifierKeyDown)
+    if (!ModifierKeyDown && !m_completeDrawing)
     {
         m_ButtonDownPlot = true;
         m_Pt0.X = e->X;
         m_Pt0.Y = e->Y;
-
-        m_Gate.X = 0;
-        m_Gate.Y = 0;
-        m_Gate.Width = 0;
-        m_Gate.Height = 0;
-
-        // Invalidate entire window.  Invalidating only the previous rectangle
-        // cause redraw problem when the user zoom between region selection.  Invalidating
-        // the entire window simplifies the handling of this case.
-        m_Graph->Invalidate();
-        m_Rect.X = 0;
-        m_Rect.Y = 0;
-        m_Rect.Width = 0;
-        m_Rect.Height = 0;
     }
+}
+
+void RectangleMarker::eraseMarker()
+{
+	m_Gate.X = 0;
+    m_Gate.Y = 0;
+    m_Gate.Width = 0;
+    m_Gate.Height = 0;
+
+    // Invalidate entire window.  Invalidating only the previous rectangle
+    // cause redraw problem when the user zoom between region selection.  Invalidating
+    // the entire window simplifies the handling of this case.
+    m_Graph->Invalidate();
+    m_Rect.X = 0;
+    m_Rect.Y = 0;
+    m_Rect.Width = 0;
+    m_Rect.Height = 0;
+
+    m_completeDrawing = false;
 }
 
 void RectangleMarker::ButtonUp(
@@ -56,6 +62,7 @@ void RectangleMarker::ButtonUp(
     if (m_ButtonDownPlot)
     {
         m_ButtonDownPlot = false;
+		m_completeDrawing = true;
         GateChanged();
     }
 }
@@ -179,6 +186,8 @@ void RectangleMarker::Detach()
 {
     if (m_Graph)
     {
+		eraseMarker();
+
         m_Graph->BeforeDrawPlot -= gcnew NationalInstruments::UI::BeforeDrawXYPlotEventHandler(this, &RectangleMarker::BeforeDrawPlot);
 
         //Graph->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &PlotGateHandler::scatterGraph1_MouseDown);
