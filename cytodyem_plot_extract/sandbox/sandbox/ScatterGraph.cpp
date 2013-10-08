@@ -27,4 +27,10 @@ void ScatterGraph::ChangeGateDrawing( GateDrawing::IGateDrawing^ gateDrawing )
     m_GateDrawing->Attach(NI_scatterGraph, NI_scatterPlot);
 }
 
+
+void ScatterGraph::clearGate()
+{
+    m_GateDrawing->eraseMarker();
+}
+
 }

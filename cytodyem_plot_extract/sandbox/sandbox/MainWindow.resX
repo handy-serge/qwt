@@ -117,4 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="eraseMarkerButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAARCAYAAADUryzEAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAKJSURBVDhPjZNfSJNRGMaXQUaWlqX9VbtJk/7MyPIP09Vl
+        mbmLVpIzyNqmmyvzRrAoyJk3GYqgglhRScXMKJmJympMZAvbxYKcruk38qORxC70pi72dN4T38fMoC4e
+        tsF5fu/zvOdMEYlE8L8SRRE+n49/St9lwKfOTrxO2ogvLtcKI4kM7v5+2BKT4Dh7TgZxAJkH1yXAc+w4
+        htIzsBAK/dU8kJYOb2kpetfEcwgHcHP8WkSu30B0fByTJ05i5MBBGUKH3rW388nTtRYI3d3wFqv5b16B
+        Yk8ezkX0/gNEe3oQtdsxWVLCISG/H2NWK2wJ6zFVXQOBDZu9eQv927bzRDwBdR5VKhFg9OjdVkS7uvDj
+        0WPYM3bjae4R2Fg1sfkOhI4OzN5u4jUkMyXkO6C4b4uLEbBY8NPajCV2MNDYCLdKBbG+HkJLC8Kt9zCQ
+        ksrrSGYZEAvx6HT4bDBgyWjEktkMoe4awk1s8pYUXifWvAxACno86MvOhv+yHosVOsyp1VjUG+DWaDBQ
+        pllhJskAWtiTrL0YzszCQkMDZnSViLAa389o4au8gJG8fH7dsWYSB0hmx779mLdcga/kFL5ercNEQSG8
+        F6sgni5DmCVxFhZipq9vOWBmdBQPd+yEM78AgsmE92wPIdb9zZ5MfgsvkjdDNNfiW9UlBPV6jOUcWvZa
+        Fb0bEjG0Kw2BGhPGVUUIGqvhUObwRJSMPzR2Zqq8HPMszTTTCEsqQRQf2trwfFUcho/mwc/MzqIi2SxN
+        odiD7BY+arWYY+lcbE/0ADmANkvX84xBXm1K5nVizZJoIkEcqVvxMm41Js5X/AZI/ypKQnVoJ3+aJRGE
+        JktmEk9AkkCxhn9JFEX8AqdKM/eo8TXUAAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>

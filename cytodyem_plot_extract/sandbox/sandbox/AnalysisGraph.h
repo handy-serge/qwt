@@ -84,7 +84,8 @@ namespace sandbox {
 #pragma endregion
     public:
             void ReDraw(std::vector<Result>& results);
-            void SetMarkerType(GateDrawing::PlotMarkerType markerType );
+            void SetMarkerType(GateDrawing::PlotMarkerType markerType);
+            void EraseMarker();
     private:
         ScatterGraph ^m_ScatterGraph;
 	};

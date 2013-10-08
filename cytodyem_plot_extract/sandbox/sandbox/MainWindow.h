@@ -22,6 +22,12 @@ protected:
     /// Clean up any resources being used.
     /// </summary>
     ~MainWindow();
+private: System::Windows::Forms::Button^  eraseMarkerButton;
+protected: 
+
+protected: 
+
+protected: 
 
     /// <summary>
     /// Required designer variable.
@@ -36,6 +42,7 @@ protected:
 
     void MainWindow::InitializeComponent( void )
     {
+        System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MainWindow::typeid));
         this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
         this->tableLayoutPlotPanel = (gcnew System::Windows::Forms::TableLayoutPanel());
         this->panelGraph1 = (gcnew System::Windows::Forms::Panel());
@@ -43,6 +50,7 @@ protected:
         this->flowLayoutPanel = (gcnew System::Windows::Forms::FlowLayoutPanel());
         this->loadButton = (gcnew System::Windows::Forms::Button());
         this->plotMarkerTypeSelector = (gcnew CustomControls::PlotMarkerTypeSelector());
+        this->eraseMarkerButton = (gcnew System::Windows::Forms::Button());
         this->tableLayoutPanel1->SuspendLayout();
         this->tableLayoutPlotPanel->SuspendLayout();
         this->flowLayoutPanel->SuspendLayout();
@@ -100,6 +108,7 @@ protected:
         // 
         this->flowLayoutPanel->Controls->Add(this->loadButton);
         this->flowLayoutPanel->Controls->Add(this->plotMarkerTypeSelector);
+        this->flowLayoutPanel->Controls->Add(this->eraseMarkerButton);
         this->flowLayoutPanel->Dock = System::Windows::Forms::DockStyle::Fill;
         this->flowLayoutPanel->Location = System::Drawing::Point(3, 3);
         this->flowLayoutPanel->Name = L"flowLayoutPanel";
@@ -122,9 +131,20 @@ protected:
         this->plotMarkerTypeSelector->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
         this->plotMarkerTypeSelector->Location = System::Drawing::Point(84, 3);
         this->plotMarkerTypeSelector->Name = L"plotMarkerTypeSelector";
-        this->plotMarkerTypeSelector->Size = System::Drawing::Size(93, 27);
+        this->plotMarkerTypeSelector->Size = System::Drawing::Size(78, 24);
         this->plotMarkerTypeSelector->TabIndex = 2;
         this->plotMarkerTypeSelector->MarkerTypeSelected += gcnew System::EventHandler<CustomControls::MarkerTypeChangedEventArgs^ >(this, &MainWindow::OnMarkerTypeSelected);
+        // 
+        // eraseMarkerButton
+        // 
+        this->eraseMarkerButton->BackgroundImage = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"eraseMarkerButton.BackgroundImage")));
+        this->eraseMarkerButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+        this->eraseMarkerButton->Location = System::Drawing::Point(168, 3);
+        this->eraseMarkerButton->Name = L"eraseMarkerButton";
+        this->eraseMarkerButton->Size = System::Drawing::Size(26, 23);
+        this->eraseMarkerButton->TabIndex = 3;
+        this->eraseMarkerButton->UseVisualStyleBackColor = true;
+        this->eraseMarkerButton->Click += gcnew System::EventHandler(this, &MainWindow::button1_Click);
         // 
         // MainWindow
         // 
@@ -165,6 +185,16 @@ private:
     AnalysisGraph ^m_Graph2;
 
 
+private: System::Void plotMarkerTypeSelector_Load(System::Object^  sender, System::EventArgs^  e) {
+         }
+private: System::Void removeGateControl_Click(System::Object^  sender, System::EventArgs^  e) {
+             m_Graph1->EraseMarker();
+             m_Graph2->EraseMarker();
+         }
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+             m_Graph1->EraseMarker();
+             m_Graph2->EraseMarker();
+         }
 };
 }
 

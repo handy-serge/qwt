@@ -44,4 +44,9 @@ void AnalysisGraph::SetMarkerType(GateDrawing::PlotMarkerType markerType )
     m_ScatterGraph->ChangeGateDrawing(gateDrawing);
 }
 
+void AnalysisGraph::EraseMarker()
+{
+    m_ScatterGraph->clearGate();
+}
+
 }
