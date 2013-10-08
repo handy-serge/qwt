@@ -86,15 +86,12 @@ void PolygonMarker::HandleMouseClick(
     bool ModifierKeyDown = (k != System::Windows::Forms::Keys::None);
     if (!ModifierKeyDown && !m_completeDrawing)
     {
+		m_isDrawing = true;
+
 		System::Drawing::Point const screenPoint(e->X, e->Y);
 		System::Drawing::PointF const dataPoint = FromScreenToData(screenPoint, m_Graph, m_Plot);
-		m_Graph->Invalidate();
 
 		m_points->Add(dataPoint);
-		
-
-        m_isDrawing = true;
-        
     }
 }
 
@@ -131,12 +128,18 @@ void PolygonMarker::HandleMouseMove(
     System::Drawing::Point const screenPoint(e->X, e->Y);
     System::Drawing::PointF const dataPoint = FromScreenToData(screenPoint, m_Graph, m_Plot);
 
-    if (m_points->Count)
+	if (m_points->Count == 1)
+	{
+		m_points->Add(dataPoint);
+	}
+
+	if (m_points->Count > 1)
     {
         m_points->RemoveAt(m_points->Count - 1);
+		m_points->Add(dataPoint);
     }
-    m_points->Add(dataPoint);
-    m_Graph->Invalidate();
+
+	m_Graph->Invalidate();
 }
 
 void PolygonMarker::BeforeDrawPlot(
@@ -144,7 +147,6 @@ void PolygonMarker::BeforeDrawPlot(
     NationalInstruments::UI::BeforeDrawXYPlotEventArgs^ e)
 {
     Graphics^ g = e->Graphics;
-    Brush^ brush = gcnew SolidBrush(Drawing::Color::FromArgb(128, 222, 191, 18)); // Yellowish Gate
 
     array<PointF>^ points = gcnew array<PointF>(m_points->Count);
     int i = 0;
@@ -153,10 +155,24 @@ void PolygonMarker::BeforeDrawPlot(
         PointF screenPoint  = m_Plot->MapDataPoint(e->Bounds, point.X, point.Y);
         points[i++] = screenPoint;
     }
-    if (points->Length)
-    {
-        g->FillPolygon(brush, points);
-    }
+
+	if (points->Length > 1)
+	{
+		if (m_completeDrawing)
+		{
+			Brush^ brush = gcnew SolidBrush(Drawing::Color::FromArgb(128, 222, 191, 18)); // Yellowish Gate
+			g->FillPolygon(brush, points);
+		}
+		else
+		{
+			Pen^ pen = gcnew Pen(Drawing::Color::FromArgb(128, 222, 191, 18));
+			for (int i = 0; i < points->Length - 1; ++i)
+			{
+				g->DrawLine(pen, points[i], points[i + 1]);
+			}
+		}
+
+	}
 }
 
 
