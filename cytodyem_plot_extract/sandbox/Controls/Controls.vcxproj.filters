@@ -60,5 +60,8 @@
     <EmbeddedResource Include="PlotMarkerTypeSelector.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
+    <EmbeddedResource Include="RemoveGateControl.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

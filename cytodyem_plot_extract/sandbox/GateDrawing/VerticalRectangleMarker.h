@@ -17,6 +17,8 @@ public:
 
     virtual void Detach();
 
+    virtual void eraseMarker();
+
     virtual IPlotGate^ GetCurrentGate();
 
 
@@ -46,6 +48,7 @@ private:
     PlotGateRect^ m_CurrentGate;
 
     bool m_ButtonDownPlot;
+	bool m_completeDrawing;
     System::Drawing::Point m_Pt0;
     System::Drawing::Point m_Pt1;
 };

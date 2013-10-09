@@ -134,7 +134,8 @@ namespace sandbox {
 #pragma endregion
     public:
         void Draw(cli::array<double>^ xValuesArray, cli::array<double>^ yValuesArray);
-        void ChangeGateDrawing( GateDrawing::IGateDrawing^ gateDrawing);
+        void ChangeGateDrawing(GateDrawing::IGateDrawing^ gateDrawing);
+        void clearGate();
     private:
         GateDrawing::IGateDrawing ^m_GateDrawing;
 
