@@ -1,0 +1,4 @@
+exe boost-socket 
+: main.cpp Deframer.cpp
+: <linkflags>-lpthread
+  <linkflags>-lboost_system ;
