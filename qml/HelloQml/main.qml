@@ -1,42 +1,32 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.3
-import QtQuick.Window 2.2
-import QtQuick.Dialogs 1.2
 
 ApplicationWindow {
-    title: qsTr("Hello World")
+    visible: true
     width: 640
     height: 480
-    visible: true
+    title: qsTr("Hello QML")
 
     menuBar: MenuBar {
         Menu {
-            title: qsTr("&File")
+            title: qsTr("File")
             MenuItem {
-                text: qsTr("&Open")
-                onTriggered: messageDialog.show(qsTr("Open action triggered"));
-            }
-            MenuItem {
-                text: qsTr("E&xit")
-                onTriggered: Qt.quit();
+                text: qsTr("Exit")
+                shortcut: "Ctrl+Q"
+                onTriggered: Qt.quit()
             }
         }
     }
 
-    MainForm {
-        anchors.fill: parent
-        button1.onClicked: messageDialog.show(qsTr("Button 1 pressed"))
-        button2.onClicked: messageDialog.show(qsTr("Button 2 pressed"))
-        button3.onClicked: messageDialog.show(qsTr("Button 3 pressed"))
+    Text {
+        id: hw
+        text: qsTr("Hello World")
+        font.capitalization: Font.AllUppercase
+        anchors.centerIn: parent
     }
 
-    MessageDialog {
-        id: messageDialog
-        title: qsTr("May I have your attention, please?")
-
-        function show(caption) {
-            messageDialog.text = caption;
-            messageDialog.open();
-        }
+    Label {
+        anchors { bottom: hw.top; bottomMargin: 5; horizontalCenter: hw.horizontalCenter }
+        text: qsTr("Hello Qt Quick")
     }
 }
