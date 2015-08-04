@@ -27,3 +27,5 @@ cytodyem_plot_extract/sandbox/Interfaces/Debug/*
 cytodyem_plot_extract/sandbox/Controls/Debug/*
 cytodyem_plot_extract/sandbox/Controls/Release/*
 cytodyem_plot_extract/sandbox/Interfaces/Release/*
+qml/HelloQml/HelloQml.pro.user
+qml/build-HelloQml-Desktop_Qt_5_5_0_MSVC2012_32bit-Debug
