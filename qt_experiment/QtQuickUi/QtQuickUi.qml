@@ -1,14 +1,17 @@
 import QtQuick 2.4
+import QtQuick.Controls 1.2
+import QtQuick.Window 2.2
+import "." as Gui
 
-Rectangle {
-    width: 200
-    height: 100
-    color: "red"
+ApplicationWindow {
+    title: qsTr("Quick GUI prototype")
+    width: 800
+    height: 600
 
-    Text {
-        width: 7
-        height: 13
-        anchors.centerIn: parent
-        text: "Hi"
+    menuBar: Gui.ApplicationMenu {}
+
+    Gui.ApplicationWindow {
+        anchors.fill: parent
     }
 }
+

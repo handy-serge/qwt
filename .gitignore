@@ -34,3 +34,4 @@ qt_experiment/HelloQml/GeneratedFiles
 qt_experiment/HelloQml/Release
 qt_experiment/Release/
 qt_experiment/*/*.pro.user
+qt_experiment/QtQuickUi/QtQuickUi.qmlproject.user
