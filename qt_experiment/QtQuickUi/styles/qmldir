@@ -1,0 +1,6 @@
+module CustomStyles
+
+singleton Colors 1.0 Colors.qml
+CustomTabViewStyle CustomTabViewStyle.qml
+
+designersupported
