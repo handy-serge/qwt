@@ -15,8 +15,10 @@ User is able to switch to current activities by using activity
 selector on on a right.
 
 */
+
 TabView {
     style: CustomStyle.CustomTabViewStyle {}
+    currentIndex: 1
     Tab {
         title: 'Analysis'
         Row {
@@ -31,44 +33,3 @@ TabView {
 
     Gui.SettingsPage {}
 }
-
-
-/*
-Item {
-
-    ListModel {
-        id: activitiesModel
-
-        ListElement {
-            name: "Setup"
-        }
-
-        ListElement {
-            name: "Scan"
-        }
-
-    }
-
-    Component {
-        id: actionsSelectorDelegate
-
-        Button {
-            text: name
-            width: 120
-            height: 32
-        }
-
-    }
-
-    ListView {
-        model: activitiesModel
-        delegate: actionsSelectorDelegate
-        anchors.fill: parent
-        spacing: 5
-        orientation: ListView.Vertical
-    }
-
-
-
-}
-*/
