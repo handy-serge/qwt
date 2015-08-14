@@ -18,18 +18,8 @@ selector on on a right.
 
 TabView {
     style: CustomStyle.CustomTabViewStyle {}
-    currentIndex: 1
-    Tab {
-        title: 'Analysis'
-        Row {
-            Image {
-                source: 'images/analysis-plots.png'
-            }
-            Image {
-                source: 'images/analysis-stats.png'
-            }
-        }
-    }
+    currentIndex: 0
 
+    Gui.ExperimentPage{}
     Gui.SettingsPage {}
 }

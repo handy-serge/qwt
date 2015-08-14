@@ -74,7 +74,6 @@ Tab {
                 verticalAlignment: Image.AlignTop
             }
         }
-
         // Current experiment info:
         Image {
             Layout.alignment:  Qt.AlignHCenter | Qt.AlignTop
