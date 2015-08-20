@@ -1,7 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloQml", "HelloQml\HelloQml.vcxproj", "{B12702AD-ABFB-343A-A199-8E24837244A3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{9741EDDF-EFFA-4827-A6CA-4C6F832A0BCB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Qwt Examples", "Qwt Examples", "{DC4B8433-7647-4022-B324-E8F49165094F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qwt", "Qwt\src\qwt.vcxproj", "{B12702AD-ABFB-343A-A199-8E24837244A3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rasterview", "Qwt\examples\rasterview\rasterview.vcxproj", "{1913AE84-16ED-4FEF-B239-9C04A4A5AD9B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloQml", "HelloQml\HelloQml.vcxproj", "{F1C475B2-A9A4-4B45-A089-3E1CC6E25AD5}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WidgetD3", "WidgetD3\WidgetD3.vcxproj", "{193CE080-6F55-4EFE-8C7F-AE796F89FC67}"
 EndProject
@@ -15,6 +23,14 @@ Global
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|Win32.Build.0 = Debug|Win32
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|Win32.ActiveCfg = Release|Win32
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|Win32.Build.0 = Release|Win32
+		{1913AE84-16ED-4FEF-B239-9C04A4A5AD9B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1913AE84-16ED-4FEF-B239-9C04A4A5AD9B}.Debug|Win32.Build.0 = Debug|Win32
+		{1913AE84-16ED-4FEF-B239-9C04A4A5AD9B}.Release|Win32.ActiveCfg = Release|Win32
+		{1913AE84-16ED-4FEF-B239-9C04A4A5AD9B}.Release|Win32.Build.0 = Release|Win32
+		{F1C475B2-A9A4-4B45-A089-3E1CC6E25AD5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F1C475B2-A9A4-4B45-A089-3E1CC6E25AD5}.Debug|Win32.Build.0 = Debug|Win32
+		{F1C475B2-A9A4-4B45-A089-3E1CC6E25AD5}.Release|Win32.ActiveCfg = Release|Win32
+		{F1C475B2-A9A4-4B45-A089-3E1CC6E25AD5}.Release|Win32.Build.0 = Release|Win32
 		{193CE080-6F55-4EFE-8C7F-AE796F89FC67}.Debug|Win32.ActiveCfg = Debug|Win32
 		{193CE080-6F55-4EFE-8C7F-AE796F89FC67}.Debug|Win32.Build.0 = Debug|Win32
 		{193CE080-6F55-4EFE-8C7F-AE796F89FC67}.Release|Win32.ActiveCfg = Release|Win32
@@ -22,6 +38,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B12702AD-ABFB-343A-A199-8E24837244A3} = {9741EDDF-EFFA-4827-A6CA-4C6F832A0BCB}
+		{1913AE84-16ED-4FEF-B239-9C04A4A5AD9B} = {DC4B8433-7647-4022-B324-E8F49165094F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		Qt5Version = $(DefaultQtVersion)

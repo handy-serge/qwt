@@ -1,0 +1,4 @@
+[submodule "qt_experiment/Qwt"]
+	path = qt_experiment/Qwt
+	url = git@github.com:handyem/qwt.git
+	branch = handyem
