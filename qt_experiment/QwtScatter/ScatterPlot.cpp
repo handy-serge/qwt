@@ -16,7 +16,7 @@ void HighlightWidget(QWidget *widget, QColor const& color)
 }
 
 
-QwtPlotCurve* setupGateShape(QwtPlotCurve *curve)
+QPolygonF const PAC_MAN = []()
 {
     QPolygonF points;
     points 
@@ -30,14 +30,31 @@ QwtPlotCurve* setupGateShape(QwtPlotCurve *curve)
         << QPointF(40, 30)
         << QPointF(30, 50)
         ;
+    return points;
+}();
 
-    curve->setSamples(points);
-    curve->setTitle("Gate 1");
-    curve->setPen(Qt::blue, 3);
+// Yes, pac-man enemies had names.
+QPolygonF const OIKAKE = []()
+{
+    QPolygonF points;
+    points
+        << QPointF(20, 20)
+        << QPointF(30, 40)
+        << QPointF(40, 50)
+        << QPointF(50, 50)
+        << QPointF(60, 50)
+        << QPointF(70, 40)
+        << QPointF(80, 20)
+        << QPointF(70, 10)
+        << QPointF(60, 20)
+        << QPointF(50, 10)
+        << QPointF(40, 20)
+        << QPointF(30, 10)
+        << QPointF(20, 20)
+        ;
+    return points;
+}();
 
-    curve->setRenderHint(QwtPlotItem::RenderAntialiased, true);
-    return curve;
-}
 
 QwtPlot* setupPlot(QwtPlot *plot)
 {
@@ -52,15 +69,46 @@ QwtPlot* setupPlot(QwtPlot *plot)
     return plot;
 }
 
+
+QwtPlotCurve* setupGateShape(
+    QwtPlotCurve *curve
+    , QPolygonF const& points
+    , QColor const& color
+    , QString const& title)
+{
+    curve->setSamples(points);
+    curve->setTitle(title);
+    curve->setPen(color, 3);
+
+    curve->setRenderHint(QwtPlotItem::RenderAntialiased, true);
+    return curve;
+}
+
+ScatterPlot::GateShapeList *setupGateShapes(
+    ScatterPlot::GateShapeList *gateShapes
+    , QwtPlot *plot
+    )
+{
+    auto makeShape = [](){return new QwtPlotCurve();};
+    *gateShapes 
+        << setupGateShape(makeShape(), OIKAKE, Qt::red, "Oikake")
+        << setupGateShape(makeShape(), PAC_MAN, Qt::blue, "Pac-man")
+        ;
+    for (auto shape: *gateShapes)
+    {
+        shape->attach(plot);
+    }
+    return gateShapes;
+}
+
 ScatterPlot::ScatterPlot( QWidget* parent)
     : QwtPlot(parent)
-    , m_gateShape(new QwtPlotCurve())
+    , m_gateShapes(new GateShapeList())
 {
     // Changing background color and size of the widget to see if
     // it is correctly added to layout (for debugging layouts).  
     // HighlightWidget(this, Qt::darkGray);
 
     setupPlot(this);
-    setupGateShape(m_gateShape);
-    m_gateShape->attach(this);
+    setupGateShapes(m_gateShapes.data(), this);
 }

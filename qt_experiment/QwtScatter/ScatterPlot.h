@@ -1,6 +1,10 @@
 #pragma once
 #include <QWidget>
+#include <QScopedPointer>
 #include <qwt_plot.h>
+
+template <typename T>
+class QList;
 
 class QwtPlotCurve;
 class ScatterPlot: public QwtPlot
@@ -10,8 +14,9 @@ class ScatterPlot: public QwtPlot
 public:
     ScatterPlot(QWidget *parent = NULL);
 
-private:
-    QwtPlotCurve *m_gateShape;
+    typedef QList<QwtPlotCurve*> GateShapeList;
 
+private:
+    QScopedPointer<GateShapeList> m_gateShapes;
 };
 
