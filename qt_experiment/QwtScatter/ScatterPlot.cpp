@@ -1,14 +1,20 @@
 #include "ScatterPlot.h"
 
+// Changes widget background to make visible the place it takes on a screen.
+void HighlightWidget(QWidget *widget, QColor const& color)
+{
+    widget->setAutoFillBackground(true);
+    auto colors = widget->palette();
+    colors.setColor(widget->backgroundRole(), color);
+    widget->setPalette(colors);
+    widget->setMinimumSize(200, 600);
+    widget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+}
+
 ScatterPlot::ScatterPlot( QWidget* parent)
-    : QWidget(parent)
+    : QwtPlot(parent)
 {
     // Changing background color and size of the widget to see if
     // it is correctly added to layout.
-    setAutoFillBackground(true);
-    auto colors = palette();
-    colors.setColor(backgroundRole(), Qt::darkGray);
-    setPalette(colors);
-    setMinimumSize(200, 600);
-    setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+    HighlightWidget(this, Qt::darkGray);
 }
