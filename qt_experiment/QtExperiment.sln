@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WidgetD3", "WidgetD3\Widget
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QwtScatter", "QwtScatter\QwtScatter.vcxproj", "{337CBAC8-2F0A-40CC-8E07-6EBA23466F3F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "simpleplot", "Qwt\examples\simpleplot\simpleplot.vcxproj", "{3470E8BB-9D08-4E7D-8099-3AEC318D1059}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -41,6 +43,10 @@ Global
 		{337CBAC8-2F0A-40CC-8E07-6EBA23466F3F}.Debug|Win32.Build.0 = Debug|Win32
 		{337CBAC8-2F0A-40CC-8E07-6EBA23466F3F}.Release|Win32.ActiveCfg = Release|Win32
 		{337CBAC8-2F0A-40CC-8E07-6EBA23466F3F}.Release|Win32.Build.0 = Release|Win32
+		{3470E8BB-9D08-4E7D-8099-3AEC318D1059}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3470E8BB-9D08-4E7D-8099-3AEC318D1059}.Debug|Win32.Build.0 = Debug|Win32
+		{3470E8BB-9D08-4E7D-8099-3AEC318D1059}.Release|Win32.ActiveCfg = Release|Win32
+		{3470E8BB-9D08-4E7D-8099-3AEC318D1059}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B12702AD-ABFB-343A-A199-8E24837244A3} = {9741EDDF-EFFA-4827-A6CA-4C6F832A0BCB}
 		{1913AE84-16ED-4FEF-B239-9C04A4A5AD9B} = {DC4B8433-7647-4022-B324-E8F49165094F}
+		{3470E8BB-9D08-4E7D-8099-3AEC318D1059} = {DC4B8433-7647-4022-B324-E8F49165094F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		Qt5Version = $(DefaultQtVersion)
