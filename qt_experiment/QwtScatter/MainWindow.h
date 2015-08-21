@@ -2,15 +2,15 @@
 #define QWTSCATTER_H
 
 #include <QtWidgets/QMainWindow>
-#include "ui_QwtScatter.h"
+#include "ui_MainWindow.h"
 
-class QwtScatter : public QMainWindow
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    QwtScatter(QWidget *parent = 0);
-    ~QwtScatter();
+    MainWindow(QWidget *parent = 0);
+    ~MainWindow();
 
 private:
     Ui::QwtScatterClass ui;
