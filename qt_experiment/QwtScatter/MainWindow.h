@@ -4,6 +4,8 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_MainWindow.h"
 
+class ScatterPlot;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -13,7 +15,9 @@ public:
     ~MainWindow();
 
 private:
-    Ui::QwtScatterClass ui;
+    Ui::MainWindow ui;
+    ScatterPlot *m_plot;
+
 };
 
 #endif // QWTSCATTER_H
