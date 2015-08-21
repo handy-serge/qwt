@@ -35,7 +35,7 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>574</height>
+           <height>552</height>
           </size>
          </property>
         </spacer>
@@ -130,9 +130,14 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="exitAction"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="exitAction">
+   <property name="icon">
+    <iconset resource="QwtScatter.qrc">
+     <normaloff>:/QwtScatter/assets/exit.png</normaloff>:/QwtScatter/assets/exit.png</iconset>
+   </property>
    <property name="text">
     <string>Exit</string>
    </property>

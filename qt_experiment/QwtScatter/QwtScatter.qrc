@@ -1,4 +1,5 @@
 <RCC>
-    <qresource prefix="QwtScatter">
-    </qresource>
+  <qresource prefix="QwtScatter">
+    <file>assets/exit.png</file>
+  </qresource>
 </RCC>
