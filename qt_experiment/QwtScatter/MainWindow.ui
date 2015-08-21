@@ -52,7 +52,7 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>The area on a right is for plot...</string>
+          <string>The area on a left is for plot...</string>
          </property>
         </widget>
        </item>
