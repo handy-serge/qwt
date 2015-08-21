@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloQml", "HelloQml\HelloQ
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WidgetD3", "WidgetD3\WidgetD3.vcxproj", "{193CE080-6F55-4EFE-8C7F-AE796F89FC67}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QwtScatter", "QwtScatter\QwtScatter.vcxproj", "{337CBAC8-2F0A-40CC-8E07-6EBA23466F3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -35,6 +37,10 @@ Global
 		{193CE080-6F55-4EFE-8C7F-AE796F89FC67}.Debug|Win32.Build.0 = Debug|Win32
 		{193CE080-6F55-4EFE-8C7F-AE796F89FC67}.Release|Win32.ActiveCfg = Release|Win32
 		{193CE080-6F55-4EFE-8C7F-AE796F89FC67}.Release|Win32.Build.0 = Release|Win32
+		{337CBAC8-2F0A-40CC-8E07-6EBA23466F3F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{337CBAC8-2F0A-40CC-8E07-6EBA23466F3F}.Debug|Win32.Build.0 = Debug|Win32
+		{337CBAC8-2F0A-40CC-8E07-6EBA23466F3F}.Release|Win32.ActiveCfg = Release|Win32
+		{337CBAC8-2F0A-40CC-8E07-6EBA23466F3F}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
