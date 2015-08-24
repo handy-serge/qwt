@@ -62,6 +62,9 @@
     <ClCompile Include="GateShapes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RasterData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="QwtScatter.qrc">
@@ -85,6 +88,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GateShapes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RasterData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
