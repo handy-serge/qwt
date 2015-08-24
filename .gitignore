@@ -38,3 +38,4 @@ qt_experiment/QtQuickUi/QtQuickUi.qmlproject.user
 GeneratedFiles/
 *.qmlproject.user
 Debug/
+Release/
