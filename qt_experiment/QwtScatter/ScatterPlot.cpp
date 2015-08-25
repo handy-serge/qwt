@@ -99,6 +99,7 @@ QwtPlotSpectrogram* setupSpectrogram(
     spectrogram->setData(data);
     spectrogram->setColorMap(new ColorMap());
     spectrogram->attach(plot);
+    spectrogram->setRenderThreadCount(4);
 
     plot->plotLayout()->setAlignCanvasToScales( true );
 
